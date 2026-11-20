@@ -3,20 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dr. Nirmal Rajkumar — Interactive Marine &amp; Environmental CV</title>
+  <title>Dr. Nirmal Rajkumar — Senior Environment Expert (Marine) | Interactive Coastal &amp; Port Horizon Dossier</title>
 
-  <!-- LinkedIn Open Graph & Social Preview Metadata -->
-  <meta property="og:title" content="Dr. Nirmal Rajkumar — Interactive Marine & Environmental CV" />
+  <!-- LinkedIn Open Graph & Social Preview Metadata (Zero HSEIA References) -->
+  <meta property="og:title" content="Dr. Nirmal Rajkumar — Senior Environment Expert (Marine) | Interactive Coastal & Port Horizon Dossier" />
   <meta property="og:description" content="Senior Environment Expert (Marine) | Ph.D. Marine Biogeochemistry. 25+ years leading Marine & Coastal EIA/PER, Statutory NOCs (EAD, MME, Ashghal, MoEF/CRZ), Dredging & Plume Compliance, and CEMP audits across 36+ landmark port, island, and coastal projects in the UAE, Qatar, Bahrain, KSA, and India." />
   <meta property="og:image" content="https://chennainirmal.github.io/Nirmal-CV/Nirmal.jpeg" />
   <meta property="og:url" content="https://chennainirmal.github.io/Nirmal-CV/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dr. Nirmal Rajkumar — Senior Environment Expert (Marine)" />
+  <meta name="twitter:description" content="Interactive Coastal & Port Horizon Dossier showcasing 25+ years and 36+ marine, port, island, and coastal projects across UAE, Qatar, Bahrain, KSA, and India." />
+  <meta name="twitter:image" content="https://chennainirmal.github.io/Nirmal-CV/Nirmal.jpeg" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+    function handleAvatarLoad(img) {
+      if (!img) return;
+      img.classList.remove('hidden');
+      const fallback = document.getElementById('profileAvatarFallback');
+      if (fallback) fallback.classList.add('hidden');
+    }
+
+    function handleAvatarError(img) {
+      if (!img) return;
+      if (img.dataset.fallbackTried !== 'true') {
+        img.dataset.fallbackTried = 'true';
+        img.src = 'https://chennainirmal.github.io/Nirmal-CV/Nirmal.jpeg';
+        return;
+      }
+      img.classList.add('hidden');
+      const fallback = document.getElementById('profileAvatarFallback');
+      if (fallback) fallback.classList.remove('hidden');
+    }
+  </script>
 
   <script>
     tailwind.config = {
@@ -58,7 +82,7 @@
     }
 
     html.dark {
-      --bg-page: #051326;
+      --bg-page: #06101E;
       --bg-card: #0B192C;
       --bg-subcard: #08182E;
       --border-card: rgba(217, 119, 6, 0.32);
@@ -97,7 +121,6 @@
     .royal-ink { color: var(--accent-royal); }
     .brass-ink { color: var(--accent-brass); }
 
-    /* Custom Scrollbar for Right Dossier Drawer */
     ::-webkit-scrollbar { width: 7px; height: 7px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb {
@@ -106,7 +129,6 @@
     }
     ::-webkit-scrollbar-thumb:hover { background: var(--accent-brass); }
 
-    /* Print Dossier Mode: Expands Entire CV Cleanly */
     @media print {
       html, body {
         height: auto !important;
@@ -155,9 +177,9 @@
     <!-- ===================================================================== -->
     <!-- LEFT PANE (46% DESKTOP): INTERACTIVE COASTAL & PORT HORIZON FRONT     -->
     <!-- ===================================================================== -->
-    <aside id="leftHorizonPane" class="w-full lg:w-[46%] lg:h-screen lg:overflow-y-auto flex flex-col justify-between p-4 sm:p-6 border-b lg:border-b-0 lg:border-r border-slate-300 dark:border-amber-500/25 gap-4">
+    <aside id="leftHorizonPane" class="w-full lg:w-[46%] lg:h-screen lg:overflow-y-auto flex flex-col justify-between p-4 sm:p-5 border-b lg:border-b-0 lg:border-r border-slate-300 dark:border-amber-500/25 gap-3.5">
 
-      <!-- Top Executive Masthead & Dual-Source Portrait -->
+      <!-- 1. Executive Masthead & Dual-Source Portrait -->
       <div class="space-y-3">
         <div class="flex items-start justify-between gap-3">
           <div class="flex items-center gap-3.5 min-w-0">
@@ -192,54 +214,59 @@
             </div>
 
             <div class="min-w-0">
-              <div class="flex flex-wrap items-center gap-1.5 font-mono text-[10px]">
+              <div class="flex flex-wrap items-center gap-1.5 font-mono text-[9.5px]">
                 <span class="px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950 royal-ink border border-blue-200 dark:border-sky-500/35 font-bold">
                   PH.D. MARINE BIOGEOCHEMISTRY
                 </span>
               </div>
-              <h1 class="font-display text-xl sm:text-2xl font-extrabold heading-ink tracking-tight uppercase mt-1 truncate">
-                Dr. Nirmal <span class="royal-ink">Rajkumar</span>
+              <h1 class="font-display text-lg sm:text-xl xl:text-2xl font-extrabold heading-ink tracking-tight uppercase mt-1 truncate">
+                Dr. Nirmal <span class="royal-ink">Rajkumar</span>, Ph.D.
               </h1>
-              <p class="font-mono text-[11px] sm:text-xs font-bold brass-ink uppercase tracking-wide truncate">
-                Senior Environment Expert (Marine)
+              <p class="font-mono text-[10.5px] sm:text-xs font-bold brass-ink uppercase tracking-wide leading-snug">
+                Senior Environment Expert — Marine, Coastal &amp; Port Infrastructure
               </p>
             </div>
           </div>
 
           <!-- 1-Click Admiralty Day / Night Harbour Theme Toggle -->
-          <button id="themeToggleBtn" type="button" onclick="toggleAdmiraltyTheme()" class="no-print shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-amber-50 dark:bg-slate-800 hover:border-amber-600 text-amber-900 dark:text-amber-300 border border-amber-300 dark:border-amber-500/40 font-mono text-[10px] font-bold transition-all cursor-pointer shadow-sm" title="Switch between Admiralty Day and Night Harbour Mode">
-            <span id="themeToggleIcon">☀</span>
-            <span id="themeToggleLabel">ADMIRALTY DAY</span>
-          </button>
+          <div class="no-print shrink-0 flex items-center gap-1.5">
+            <button id="themeToggleBtn" type="button" onclick="toggleAdmiraltyTheme()" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-amber-50 dark:bg-slate-800 hover:border-amber-600 text-amber-900 dark:text-amber-300 border border-amber-300 dark:border-amber-500/40 font-mono text-[10px] font-bold transition-all cursor-pointer shadow-sm" title="Switch between Admiralty Day and Night Harbour Mode">
+              <span id="themeToggleIcon">☀</span>
+              <span id="themeToggleLabel">ADMIRALTY DAY</span>
+            </button>
+            <button type="button" onclick="window.print()" class="px-2.5 py-1.5 rounded-xl bg-admiralty-900 hover:bg-admiralty-800 text-white font-mono text-[10px] font-bold transition-all cursor-pointer shadow-sm">
+              EXPORT PDF
+            </button>
+          </div>
         </div>
 
         <!-- 4 Executive KPI Chips -->
         <div class="grid grid-cols-4 gap-2">
           <button type="button" onclick="navigateToSection('career')" class="p-2 rounded-xl dossier-card text-center cursor-pointer">
-            <div class="font-display text-base sm:text-lg font-extrabold royal-ink">25+</div>
-            <div class="font-mono text-[9px] font-bold muted-ink uppercase">Years</div>
+            <div class="font-display text-base sm:text-lg font-extrabold royal-ink">25+ YRS</div>
+            <div class="font-mono text-[9px] font-bold muted-ink uppercase">Experience</div>
           </button>
           <button type="button" onclick="navigateToSection('projects')" class="p-2 rounded-xl dossier-card text-center cursor-pointer">
             <div class="font-display text-base sm:text-lg font-extrabold heading-ink">36</div>
             <div class="font-mono text-[9px] font-bold muted-ink uppercase">Projects</div>
           </button>
-          <button type="button" onclick="navigateToSection('countries')" class="p-2 rounded-xl dossier-card text-center cursor-pointer">
+          <button type="button" onclick="navigateToSection('footprint')" class="p-2 rounded-xl dossier-card text-center cursor-pointer">
             <div class="font-display text-base sm:text-lg font-extrabold brass-ink">5</div>
             <div class="font-mono text-[9px] font-bold muted-ink uppercase">Countries</div>
           </button>
           <button type="button" onclick="navigateToSection('education')" class="p-2 rounded-xl dossier-card text-center cursor-pointer">
             <div class="font-display text-base sm:text-lg font-extrabold text-emerald-700 dark:text-emerald-400">Ph.D.</div>
-            <div class="font-mono text-[9px] font-bold muted-ink uppercase">Marine Sci</div>
+            <div class="font-mono text-[9px] font-bold muted-ink uppercase">Marine</div>
           </button>
         </div>
       </div>
 
       <!-- Photorealistic HTML5 Canvas 2D Coastal & Port Horizon Viewport -->
-      <div id="horizonCanvasWrapper" class="relative rounded-2xl overflow-hidden border-2 border-[#B45309]/45 bg-[#051326] shadow-lg">
-        <div class="relative w-full h-[215px] sm:h-[245px] lg:h-[235px]">
+      <div id="horizonCanvasWrapper" class="rounded-2xl overflow-hidden border border-slate-300 dark:border-amber-500/35 bg-[#051326] shadow-lg">
+        <div class="relative w-full h-44 sm:h-52 xl:h-56">
           <canvas id="coastalHorizonCanvas" class="w-full h-full block"></canvas>
 
-          <!-- Top Telemetry Strip -->
+          <!-- Top Telemetry Overlay -->
           <div class="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none font-mono text-[9.5px]">
             <span class="px-2 py-0.5 rounded bg-[#0B192C]/90 text-sky-300 border border-sky-400/35 font-bold">
               INTERACTIVE COASTAL &amp; PORT HORIZON
@@ -249,12 +276,12 @@
             </span>
           </div>
 
-          <!-- Bottom Active Landmark Readout -->
-          <div class="absolute bottom-2 left-2.5 right-2.5 px-2.5 py-1.5 rounded-xl bg-[#0B192C]/92 border border-amber-500/35 pointer-events-none flex items-center justify-between gap-2 font-mono text-[10px]">
+          <!-- Interactive HUD Bar Below/Bottom of Canvas -->
+          <div class="absolute bottom-2 left-2.5 right-2.5 px-2.5 py-1.5 rounded-xl bg-[#0B192C]/94 border border-amber-500/40 pointer-events-none flex items-center justify-between gap-2 font-mono text-[10px]">
             <div class="truncate">
               <span id="activeBeaconTitle" class="text-amber-300 font-bold">02 PORT &amp; CONTAINER TERMINAL</span>
               <span class="text-slate-400 mx-1">•</span>
-              <span id="activeBeaconDesc" class="text-slate-200">Click any beacon on the horizon to inspect</span>
+              <span id="activeBeaconDesc" class="text-slate-200">Port Master Plans &amp; Berths — Click any beacon to filter Projects</span>
             </div>
             <span class="text-sky-300 font-bold shrink-0">CLICK PIN ↗</span>
           </div>
@@ -264,33 +291,30 @@
         <div id="beaconQuickBar" class="bg-[#08182E] border-t border-amber-500/25 px-2.5 py-1.5 flex flex-wrap items-center justify-between gap-1 font-mono text-[9.5px]"></div>
       </div>
 
-      <!-- 7 Synchronized Primary Category Navigation Links -->
-      <nav id="primaryNavGrid" aria-label="Dossier Navigation Sections" class="space-y-2">
+      <!-- 6 Synchronized Executive Navigation Sections -->
+      <nav id="primaryNavGrid" aria-label="Executive Navigation Sections" class="space-y-2">
         <div class="flex items-center justify-between font-mono text-[10px] font-bold muted-ink uppercase tracking-wider">
-          <span>SELECT DOSSIER CHAPTER</span>
+          <span>EXECUTIVE SECTIONS</span>
           <span class="brass-ink">INSTANT VIEW</span>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 gap-1.5 font-mono text-[11px]">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5 font-mono text-[11px]">
           <button type="button" onclick="navigateToSection('career')" data-nav-section="career" class="nav-link-btn px-2.5 py-2 rounded-xl text-left font-bold bg-admiralty-900 text-white border border-amber-500 shadow-sm transition-all cursor-pointer">
-            01. Career
+            01. Career (7)
           </button>
           <button type="button" onclick="navigateToSection('skills')" data-nav-section="skills" class="nav-link-btn px-2.5 py-2 rounded-xl text-left font-semibold dossier-card heading-ink hover:border-amber-600 transition-all cursor-pointer">
-            02. Skills
+            02. Core Expertise (8)
           </button>
           <button type="button" onclick="navigateToSection('projects')" data-nav-section="projects" class="nav-link-btn px-2.5 py-2 rounded-xl text-left font-semibold dossier-card heading-ink hover:border-amber-600 transition-all cursor-pointer">
-            03. Projects
+            03. Projects (36)
           </button>
-          <button type="button" onclick="navigateToSection('countries')" data-nav-section="countries" class="nav-link-btn px-2.5 py-2 rounded-xl text-left font-semibold dossier-card heading-ink hover:border-amber-600 transition-all cursor-pointer">
-            04. Countries
-          </button>
-          <button type="button" onclick="navigateToSection('sectors')" data-nav-section="sectors" class="nav-link-btn px-2.5 py-2 rounded-xl text-left font-semibold dossier-card heading-ink hover:border-amber-600 transition-all cursor-pointer">
-            05. Sectors
+          <button type="button" onclick="navigateToSection('footprint')" data-nav-section="footprint" class="nav-link-btn px-2.5 py-2 rounded-xl text-left font-semibold dossier-card heading-ink hover:border-amber-600 transition-all cursor-pointer">
+            04. Footprint
           </button>
           <button type="button" onclick="navigateToSection('education')" data-nav-section="education" class="nav-link-btn px-2.5 py-2 rounded-xl text-left font-semibold dossier-card heading-ink hover:border-amber-600 transition-all cursor-pointer">
-            06. Education
+            05. Education
           </button>
-          <button type="button" onclick="navigateToSection('contact')" data-nav-section="contact" class="nav-link-btn col-span-2 sm:col-span-2 lg:col-span-2 xl:col-span-2 px-2.5 py-2 rounded-xl text-left font-semibold dossier-card heading-ink hover:border-amber-600 transition-all cursor-pointer">
-            07. Contact &amp; vCard
+          <button type="button" onclick="navigateToSection('contact')" data-nav-section="contact" class="nav-link-btn px-2.5 py-2 rounded-xl text-left font-semibold dossier-card heading-ink hover:border-amber-600 transition-all cursor-pointer">
+            06. Contact
           </button>
         </div>
       </nav>
@@ -313,15 +337,12 @@
     <!-- RIGHT PANE (54% DESKTOP): EXECUTIVE DOSSIER DESCRIPTION DRAWER        -->
     <!-- ===================================================================== -->
     <main id="rightDossierPane" class="w-full lg:w-[54%] lg:h-screen lg:overflow-y-auto p-4 sm:p-6 lg:p-8">
-      <!-- Dynamic Interactive View Container -->
       <div id="activeDrawerContent" class="max-w-3xl mx-auto space-y-6 pb-8"></div>
-
-      <!-- Hidden Full-CV Print Container (Automatically Shown Only When Printing) -->
       <div id="printFullCvContainer" class="hidden space-y-6"></div>
     </main>
   </div>
 
-  <!-- Project Detail Modal -->
+  <!-- Project Case Modal -->
   <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/75 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="modalProjectTitle">
     <div class="dossier-card rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-5 relative shadow-2xl">
       <div class="flex items-start justify-between gap-4 border-b border-slate-200 dark:border-slate-700 pb-4">
@@ -343,13 +364,18 @@
           <div id="modalProjectClient" class="heading-ink font-bold mt-1"></div>
         </div>
         <div class="p-3.5 rounded-2xl dossier-subcard">
-          <div class="muted-ink font-semibold">LOCATION &amp; COUNTRY</div>
+          <div class="muted-ink font-semibold">LOCATION &amp; JURISDICTION</div>
           <div id="modalProjectLocation" class="royal-ink font-bold mt-1"></div>
         </div>
       </div>
 
+      <div class="p-3.5 rounded-2xl dossier-subcard font-mono text-xs">
+        <div class="muted-ink font-semibold">STATUTORY &amp; REGULATORY FRAMEWORK</div>
+        <div id="modalProjectRegulator" class="brass-ink font-bold mt-1"></div>
+      </div>
+
       <div class="p-4 rounded-2xl dossier-subcard space-y-1.5">
-        <div class="font-mono text-xs font-bold brass-ink uppercase">Technical Scope &amp; Regulatory Deliverables</div>
+        <div class="font-mono text-xs font-bold brass-ink uppercase">Technical Scope &amp; Deliverables</div>
         <p id="modalProjectScope" class="text-sm sm:text-base body-ink leading-relaxed"></p>
       </div>
 
@@ -363,7 +389,7 @@
 
   <script>
     // =========================================================================
-    // 0. SAFE HTML ESCAPING & DUAL-SOURCE PORTRAIT LOADER
+    // 0. SAFE HTML ESCAPING, DUAL-SOURCE PORTRAIT LOADER & THEME TOGGLE
     // =========================================================================
 
     function escapeHtml(str) {
@@ -420,7 +446,7 @@
     }
 
     // =========================================================================
-    // 1. VERIFIED CV DATA (7 ROLES, 36 PROJECTS, 8 SKILLS, EDUCATION, PAPERS)
+    // 1. VERIFIED CV DATA (7 ROLES, 8 SKILLS, 36 PROJECTS [17/9/5/5], 5 COUNTRIES)
     // =========================================================================
 
     const ROLES_DATA = [
@@ -527,61 +553,63 @@
     const SKILLS_DATA = [
       {
         code: '01',
-        title: 'Marine & Coastal Environmental Assessment',
-        authority: 'Ports, Harbours, Dredging & Reclamation',
-        detail: 'Comprehensive coastal, port, harbour, capital/maintenance dredging, coastal reclamation, and marine ecological impact assessments across GCC and Indian waters.'
+        title: 'Marine & Coastal EIA / PER',
+        authority: 'Ports, Terminals, Islands & Reclamation',
+        detail: 'Technical direction and authoring of Preliminary Environmental Reviews (PER) and full-scale Environmental Impact Assessments (EIA) for commercial ports, marinas, breakwaters, and ecological islands.'
       },
       {
         code: '02',
-        title: 'Environmental Permitting, Approvals & NOCs',
+        title: 'Statutory Authority Permitting & NOCs',
         authority: 'EAD • MME • Ashghal • MoEF / CRZ',
-        detail: 'End-to-end management of statutory environmental permits, Coastal Regulation Zone (CRZ) clearances, and design/construction milestone NOCs.'
+        detail: 'End-to-end regulatory clearance management, Coastal Regulation Zone (CRZ) approvals, and design/construction milestone NOCs across UAE, Qatar, Bahrain, KSA, and India.'
       },
       {
         code: '03',
-        title: 'EIA / PER Technical Leadership',
-        authority: 'Preliminary & Full-Scale Studies',
-        detail: 'Technical direction for Preliminary Environmental Reviews (PER) and full-scale Environmental & Social Impact Assessments (EIA/ESIA) for major maritime master plans.'
+        title: 'Capital Dredging & Plume Compliance',
+        authority: 'Dredging Performance & Turbidity Control',
+        detail: 'Design and oversight of capital/maintenance dredging environmental monitoring plans, real-time turbidity thresholds, silt-curtain deployment, and disposal basin compliance.'
       },
       {
         code: '04',
-        title: 'Hydrodynamic, Plume & Baseline Reviews',
-        authority: 'Water, Sediment, Coral & Benthic Ecology',
-        detail: 'Technical review of hydrodynamic & sediment-plume dispersion modelling, marine water/sediment baselines, coral/benthic surveys, and diurnal biogeochemistry.'
+        title: 'Hydrodynamic & Sediment Modelling Oversight',
+        authority: 'Coastal Processes & Dispersion Review',
+        detail: 'Critical technical review of 2D/3D hydrodynamic circulation, sediment transport, thermal recirculation, and dredging-plume dispersion numerical models.'
       },
       {
         code: '05',
-        title: 'Construction Environmental Management (CEMP)',
-        authority: 'Contractor Method Statements & Audits',
-        detail: 'Formulation and review of CEMPs, dredging performance and turbidity monitoring frameworks, contractor method statement reviews, and on-site compliance audits.'
+        title: 'Marine Ecological & Coral/Mangrove Baselines',
+        authority: 'Benthic, Seagrass, Reef & Water Surveys',
+        detail: 'Scoping and supervision of marine water/sediment quality baselines, coral reef and seagrass mapping, mangrove creek biogeochemistry, and marine mammal/turtle mitigation.'
       },
       {
         code: '06',
-        title: 'Authority Liaison & Consultant Direction',
-        authority: 'Multidisciplinary Engineering Integration',
-        detail: 'Directing specialist environmental sub-consultants and aligning marine/civil engineering designs with environmental authority requirements.'
+        title: 'CEMP Governance & Construction Audits',
+        authority: 'EPC Contractor Method Statement Reviews',
+        detail: 'Formulation and auditing of Construction Environmental Management Plans (CEMP), marine works method statements, and on-site contractor compliance inspections.'
       },
       {
         code: '07',
-        title: 'Tender Specifications & Design Requirements',
-        authority: 'EPC & Marine Works Packages',
-        detail: 'Framing technical environmental tender specifications and embedding mitigation controls directly into port, marina, and coastal infrastructure designs.'
+        title: 'Offshore Oil & Gas Environmental Management',
+        authority: 'Subsea Pipelines, Terminals & Platforms',
+        detail: 'Environmental impact assessments, ENVID/HAZID environmental framing, and operational compliance for offshore gas fields, island terminals, and petrochemical complexes.'
       },
       {
         code: '08',
-        title: 'Project Management, Proposals & Budgeting',
-        authority: 'World Bank • ADB • GCC Master Plans',
-        detail: 'Managing concurrent environmental programmes, schedules, cost estimates, technical proposals, and public stakeholder consultations.'
+        title: 'Stakeholder & Lender ESG Compliance',
+        authority: 'World Bank • ADB • IFC Safeguards',
+        detail: 'Public stakeholder consultations, resettlement/livelihood environmental safeguards, and international lender compliance on multi-lateral port and coastal infrastructure.'
       }
     ];
 
+    // 36 Verified Projects: Marine & Coastal (17), Oil & Gas / Petrochem (9), Civil & Utilities (5), India Water & Marine (5)
     const PROJECTS_DATA = [
-      // Marine & Coastal
+      // Marine & Coastal (17)
       { title: 'Environmental Studies for 2026 Maritime Projects', client: 'Abu Dhabi Ports / WKC', location: 'Abu Dhabi, UAE', country: 'UAE', sector: 'Marine & Coastal', period: '2026–Present', scope: 'Preliminary Environmental Reviews (PERs) for Nad Al Sheba, Dhanna Port Expansion, and Marine Facilities at Tarif.' },
       { title: 'Fujairah Terminal 2, Port of Fujairah', client: 'Abu Dhabi Ports / WKC', location: 'Fujairah, UAE', country: 'UAE', sector: 'Marine & Coastal', period: '2026–Present', scope: 'Comprehensive EIA for terminal development, capital dredging, coastal reclamation, and port infrastructure.' },
       { title: 'Fteysi Island North Ecological Island Expansion (FN4)', client: 'Abu Dhabi Ports / GHD', location: 'Abu Dhabi, UAE', country: 'UAE', sector: 'Marine & Coastal', period: '2026–Present', scope: 'EIA study, hydrodynamic modelling review, and environmental coordination for ecological island creation.' },
       { title: 'Sir Bani Yas Island Cruise Jetty & Dasah Bay Superyacht Marina', client: 'Abu Dhabi Ports / GHD', location: 'Abu Dhabi, UAE', country: 'UAE', sector: 'Marine & Coastal', period: '2026–Present', scope: 'EIA and coastal baseline investigations for dedicated cruise jetty and luxury superyacht marina works.' },
       { title: 'Khalifa Port Expansion 2030', client: 'Abu Dhabi Ports / Hydro Qual', location: 'Abu Dhabi, UAE', country: 'UAE', sector: 'Marine & Coastal', period: '2025–2026', scope: 'EIA technical direction, marine hydrodynamic inputs, and ecological assessment for container terminal expansion.' },
+      { title: 'Al Harmiyyah, Sila & Delma Port Marine Developments', client: 'Abu Dhabi Ports / KEO', location: 'Al Dhafra, UAE', country: 'UAE', sector: 'Marine & Coastal', period: '2025–Present', scope: 'Statutory EAD permitting, marine ecological baselines, and coastal engineering environmental compliance for western region ports.' },
       { title: 'East Hidd & Al Naheel Coastal Reclamation Projects', client: 'Ministry of Works / AECOM', location: 'Kingdom of Bahrain', country: 'Bahrain', sector: 'Marine & Coastal', period: '2024', scope: 'EIA and environmental permitting for massive offshore reclamation packages and coastal revetments.' },
       { title: 'South Al Mussafah Channel Capital Dredging', client: 'Environment Agency - Abu Dhabi (EAD) / Artelia', location: 'Abu Dhabi, UAE', country: 'UAE', sector: 'Marine & Coastal', period: '2022–2024', scope: 'Dredging performance monitoring, environmental effectiveness evaluation, and water turbidity assessments.' },
       { title: 'Al Aryam Marine Works', client: 'Abu Dhabi Ports / Septech', location: 'Abu Dhabi, UAE', country: 'UAE', sector: 'Marine & Coastal', period: '2022', scope: 'CEMP preparation and statutory compliance for floating pontoons, berthing facilities, and shaded coastal structures.' },
@@ -594,16 +622,14 @@
       { title: 'Dibba Commercial Marine Shellfish Farm', client: 'East Coast Shellfish / GCEEC', location: 'Fujairah, UAE', country: 'UAE', sector: 'Marine & Coastal', period: '2016', scope: 'Marine EIA, water quality monitoring, and statutory aquaculture permitting for offshore oyster concession.' },
       { title: 'Yasat Island Submarine Power Cable Laying', client: 'EDF / DEWA / GCEEC', location: 'Abu Dhabi, UAE', country: 'UAE', sector: 'Marine & Coastal', period: '2017', scope: 'Marine Environmental Impact Assessment for subsea high-voltage power transmission cables across sensitive marine zones.' },
 
-      // India Water & Marine
+      // India Water & Marine (5)
       { title: 'Four Fishery Harbours Reconstruction & Modernisation', client: 'Department of Fisheries / World Bank ETRP', location: 'Tamil Nadu, India', country: 'India', sector: 'India Water & Marine', period: '2008–2014', scope: 'DPR, EIA/EMP, public consultation, MoEF/CRZ clearances and construction environmental support for Chinnamuttom, Pazhayar, Nagapattinam and Mallipattinam.' },
       { title: 'Marine EIAs for Ports, Harbours and Dredging', client: 'World Bank / ADB / Government of Tamil Nadu', location: 'Tamil Nadu, India', country: 'India', sector: 'India Water & Marine', period: '2004–2008', scope: 'Impact assessment for Chennai Port and Tamil Nadu fishing harbours, including dredging and tsunami-rehabilitation works at Cuddalore and Nagapattinam.' },
       { title: 'Coolant-Water Intake & Outfall Assessments', client: 'TNEB / Koodankulam Nuclear Power Plant', location: 'Tamil Nadu, India', country: 'India', sector: 'India Water & Marine', period: '2006–2007', scope: 'Marine impact assessments for thermal and nuclear power facilities at Tuticorin and Koodankulam.' },
-      { title: 'Andaman Mangrove Biogeochemistry Research', client: 'UK NERC', location: 'Andaman Islands, India', country: 'India', sector: 'India Water & Marine', period: '2002–2006', scope: 'Nitrification, denitrification, methane and nitrous-oxide research, including water, air and sediment sampling in tidal mangrove creeks.' },
-      { title: 'Tsunami-Affected Andaman Water-Quality Assessment', client: 'Department of Science & Technology, Government of India', location: 'Andaman Islands, India', country: 'India', sector: 'India Water & Marine', period: '2005–2006', scope: 'Tidal observations, diurnal sampling, nutrient analysis and coastal-water biogeochemistry assessment.' },
-      { title: 'IAMWARM River-Basin & Irrigation Project', client: 'Government of Tamil Nadu / World Bank', location: 'Tamil Nadu, India', country: 'India', sector: 'India Water & Marine', period: '2008–2013', scope: 'Environmental monitoring and evaluation of tank-irrigation impacts on agriculture across Tamil Nadu river sub-basins.' },
-      { title: 'Chennai, Nagapattinam & Pondicherry Water Studies', client: 'MoEF / MoWR / World Bank', location: 'South India', country: 'India', sector: 'India Water & Marine', period: '2002–2008', scope: 'Waterways monitoring/database development, assessment of coastal backwater effects and drinking/irrigation water-quality characterisation.' },
+      { title: 'Andaman Mangrove & Tsunami Coastal Biogeochemistry Research', client: 'UK NERC / Dept. of Science & Technology, Govt. of India', location: 'Andaman Islands, India', country: 'India', sector: 'India Water & Marine', period: '2002–2006', scope: 'Tidal observations, diurnal sampling, nutrient analysis, nitrification/denitrification, and greenhouse gas biogeochemistry in tidal mangrove creeks.' },
+      { title: 'IAMWARM River-Basin & South India Coastal Water Studies', client: 'Government of Tamil Nadu / World Bank / MoEF / MoWR', location: 'Tamil Nadu & Pondicherry, India', country: 'India', sector: 'India Water & Marine', period: '2002–2013', scope: 'Environmental monitoring of tank-irrigation impacts, waterways database development, and coastal backwater water-quality characterisation.' },
 
-      // Oil & Gas / Petrochemical
+      // Oil & Gas / Petrochemical (9)
       { title: 'Borouge 3 Petrochemical Expansion', client: 'ADNOC / Borouge', location: 'Ruwais, Abu Dhabi, UAE', country: 'UAE', sector: 'Oil & Gas / Petrochemical', period: '2024', scope: 'EIA for world-scale polyethylene and polypropylene plant expansion within Ruwais Industrial Area.' },
       { title: 'Habshan 5 Gas Processing Plant Operations EIA', client: 'ADNOC Gas Processing', location: 'Abu Dhabi, UAE', country: 'UAE', sector: 'Oil & Gas / Petrochemical', period: '2024', scope: 'Comprehensive operational EIA covering emissions, hazardous effluents, and regulatory EAD compliance.' },
       { title: 'MERAM Pipelines (Ethane Recovery & Monetization)', client: 'ADNOC', location: 'Abu Dhabi, UAE', country: 'UAE', sector: 'Oil & Gas / Petrochemical', period: '2024', scope: 'Environmental Impact Assessment for major cross-country ethane transmission pipeline corridors.' },
@@ -611,9 +637,10 @@
       { title: 'DAS Island Offshore Facility Modernization', client: 'ADNOC Offshore', location: 'DAS Island, UAE', country: 'UAE', sector: 'Oil & Gas / Petrochemical', period: '2024', scope: 'EIA and regulatory clearance for offshore oil and gas processing infrastructure and marine terminals.' },
       { title: 'Combined Phase Environmental Study for Offshore Fields', client: 'ADOC', location: 'Offshore Abu Dhabi, UAE', country: 'UAE', sector: 'Oil & Gas / Petrochemical', period: '2024–2025', scope: 'PHA reporting (HAZID, ENVID, OHID) for ongoing drilling and workover operations at AR/GA/Hail/Mubarraz fields.' },
       { title: "TA'ZIZ Chemical Derivatives Park", client: 'ADNOC / ADQ', location: 'Ruwais, UAE', country: 'UAE', sector: 'Oil & Gas / Petrochemical', period: '2024', scope: 'Environmental and Social Impact Assessment (ESIA) for multi-billion-dollar industrial chemicals complex.' },
+      { title: 'Subsea & Offshore Pipeline Integrity Environmental Studies', client: 'ADNOC Offshore', location: 'Offshore Abu Dhabi, UAE', country: 'UAE', sector: 'Oil & Gas / Petrochemical', period: '2024', scope: 'Marine benthic protection and subsea corridor environmental compliance for offshore production blocks.' },
       { title: 'Takreer Ruwais Interim Hazardous Waste Facility', client: 'Takreer / MGS', location: 'Abu Dhabi, UAE', country: 'UAE', sector: 'Oil & Gas / Petrochemical', period: '2014–2015', scope: 'Environmental decommissioning evaluation, soil remediation assessment, and site clearance.' },
 
-      // Civil & Utilities
+      // Civil & Utilities (5)
       { title: 'Al Soudah Tourism Development Master Plan', client: 'Al Soudah Development', location: 'Kingdom of Saudi Arabia', country: 'Saudi Arabia', sector: 'Civil & Utilities', period: '2024–2027', scope: 'High-level environmental and sustainability audit for luxury mountain hospitality and tourism giga-project.' },
       { title: 'Qatar Economic Zone 3 (Manateq) Infrastructure', client: 'HLG / Manateq', location: 'Qatar', country: 'Qatar', sector: 'Civil & Utilities', period: '2016', scope: 'CEMP, groundwater protection, and construction environmental monitoring for primary roads and utility networks.' },
       { title: 'FIFA 2022 World Cup Readiness Infrastructure', client: 'Supreme Committee / Ashghal', location: 'Doha, Qatar', country: 'Qatar', sector: 'Civil & Utilities', period: '2016–2020', scope: 'CEMP preparation and surface/groundwater network environmental compliance for Fifth Precinct stadium works.' },
@@ -631,9 +658,9 @@
 
     const SECTORS_META = [
       { name: 'Marine & Coastal', badge: 'CORE SPECIALIZATION', summary: 'Commercial ports, container terminals, cruise jetties, superyacht marinas, capital dredging, offshore reclamation, breakwaters, groynes, subsea cables, and ecological islands.' },
-      { name: 'India Water & Marine', badge: 'COASTAL & RESEARCH', summary: 'World Bank & ADB fishing harbour reconstructions, CRZ clearances, thermal/nuclear cooling-water intakes & outfalls, river-basin irrigation, and Andaman mangrove biogeochemistry.' },
-      { name: 'Oil & Gas / Petrochemical', badge: 'ENERGY & INDUSTRIAL', summary: 'Offshore gas developments, island terminal modernizations, petrochemical expansions, ethane pipelines, and industrial chemical parks across Abu Dhabi.' },
-      { name: 'Civil & Utilities', badge: 'INFRASTRUCTURE & WATER', summary: 'Giga-project tourism master plans, special economic zones, FIFA 2022 stadium precinct utilities, municipal STPs, and power generation EMS frameworks.' }
+      { name: 'Oil & Gas / Petrochemical', badge: 'ENERGY & OFFSHORE', summary: 'Offshore gas developments, island terminal modernizations, petrochemical expansions, ethane pipelines, and industrial chemical complexes across Abu Dhabi.' },
+      { name: 'Civil & Utilities', badge: 'INFRASTRUCTURE & WATER', summary: 'Giga-project tourism master plans, special economic zones, FIFA 2022 stadium precinct utilities, municipal STPs, and power generation EMS frameworks.' },
+      { name: 'India Water & Marine', badge: 'COASTAL & BIOGEOCHEMISTRY', summary: 'Chennai Port & Tamil Nadu dredging EIAs, CRZ clearances, thermal/nuclear cooling-water intakes & outfalls, river-basin irrigation, and Andaman mangrove biogeochemistry.' }
     ];
 
     const HORIZON_BEACONS = [
@@ -643,11 +670,12 @@
         label: 'Regulatory Lighthouse',
         shortLabel: '01 NOCs',
         coords: '24.4620° N, 54.3610° E | -6.0m',
-        desc: 'Statutory Permitting & NOCs (EAD, MME, Ashghal, MoEF/CRZ)',
+        desc: 'Statutory NOCs (EAD, MME, Ashghal, MoEF/CRZ) — Filters Projects to Regulatory/EIA',
         normX: 0.13,
         normY: 0.56,
-        filterKeyword: 'EAD',
-        filterSector: 'ALL'
+        filterKeyword: 'EIA',
+        filterSector: 'ALL',
+        badgeLabel: '01 Regulatory Lighthouse (EIA/NOCs)'
       },
       {
         id: 'port',
@@ -655,11 +683,12 @@
         label: 'Port & Container Terminal',
         shortLabel: '02 PORTS',
         coords: '24.4539° N, 54.3773° E | -18.5m',
-        desc: 'Khalifa Port 2030, Fujairah Terminal 2 & Commercial Harbours',
+        desc: 'Port Master Plans & Berths — Filters Projects to Port/Marine',
         normX: 0.34,
         normY: 0.50,
         filterKeyword: 'Port',
-        filterSector: 'Marine & Coastal'
+        filterSector: 'Marine & Coastal',
+        badgeLabel: '02 Port & Container Terminal'
       },
       {
         id: 'dredging',
@@ -667,11 +696,12 @@
         label: 'Dredging & Plume Channel',
         shortLabel: '03 DREDGING',
         coords: '24.3980° N, 54.4420° E | -16.0m',
-        desc: 'Capital Dredging, Turbidity Monitoring & Hydrodynamic Reviews',
+        desc: 'Capital Dredging, Reclamation & Turbidity — Filters Projects to Dredging/Reclamation',
         normX: 0.53,
         normY: 0.72,
         filterKeyword: 'Dredging',
-        filterSector: 'Marine & Coastal'
+        filterSector: 'ALL',
+        badgeLabel: '03 Dredging & Plume Channel'
       },
       {
         id: 'offshore',
@@ -679,11 +709,12 @@
         label: 'Offshore Energy Shelf',
         shortLabel: '04 OFFSHORE',
         coords: '25.1480° N, 52.8750° E | -34.0m',
-        desc: 'Umm Shaif, DAS Island, Subsea Cables & Offshore EIA',
+        desc: 'Offshore Pipelines, Terminals & Platforms — Filters to Oil & Gas / Petrochemical',
         normX: 0.69,
         normY: 0.45,
-        filterKeyword: 'Offshore',
-        filterSector: 'ALL'
+        filterKeyword: '',
+        filterSector: 'Oil & Gas / Petrochemical',
+        badgeLabel: '04 Offshore Energy Shelf'
       },
       {
         id: 'island',
@@ -691,16 +722,17 @@
         label: 'Ecological & Port Island',
         shortLabel: '05 ISLAND',
         coords: '24.4210° N, 54.3280° E | -8.5m',
-        desc: 'Fteysi Island, Sir Bani Yas, Qetaifan, Saadiyat & Andaman Islands',
+        desc: 'Island Master Plans & Reef/Mangrove Baselines — Filters Projects to Island',
         normX: 0.86,
         normY: 0.59,
         filterKeyword: 'Island',
-        filterSector: 'ALL'
+        filterSector: 'ALL',
+        badgeLabel: '05 Ecological & Port Island'
       }
     ];
 
     // =========================================================================
-    // 2. NAVIGATION STATE & SYNCHRONIZED DRAWER RENDERER
+    // 2. NAVIGATION STATE & UNIFIED 6-PILLAR DRAWER RENDERER
     // =========================================================================
 
     let activeSection = 'career';
@@ -713,26 +745,28 @@
     function navigateToSection(section, opts = {}) {
       activeSection = section;
 
-      if (typeof opts.search === 'string') projectSearchQuery = opts.search;
-      if (typeof opts.sector === 'string') projectSectorFilter = opts.sector;
-      if (typeof opts.country === 'string') projectCountryFilter = opts.country;
-      if (typeof opts.beaconBadge === 'string') activeBeaconBadgeLabel = opts.beaconBadge;
+      if (section === 'projects' && Object.keys(opts).length === 0) {
+        projectSearchQuery = '';
+        projectSectorFilter = 'ALL';
+        projectCountryFilter = 'ALL';
+        activeBeaconBadgeLabel = '';
+      } else {
+        if (typeof opts.search === 'string') projectSearchQuery = opts.search;
+        if (typeof opts.sector === 'string') projectSectorFilter = opts.sector;
+        if (typeof opts.country === 'string') projectCountryFilter = opts.country;
+        if (typeof opts.beaconBadge === 'string') activeBeaconBadgeLabel = opts.beaconBadge;
+      }
 
-      // Update active state across all 7 primary navigation buttons
+      // Update active state across all 6 primary navigation buttons
       document.querySelectorAll('.nav-link-btn').forEach(btn => {
         const isCurrent = btn.getAttribute('data-nav-section') === section;
-        const isSpanTwo = section === 'contact' && btn.getAttribute('data-nav-section') === 'contact';
-        const colClass = btn.getAttribute('data-nav-section') === 'contact'
-          ? 'col-span-2 sm:col-span-2 lg:col-span-2 xl:col-span-2 '
-          : '';
         btn.className = isCurrent
-          ? `nav-link-btn ${colClass}px-2.5 py-2 rounded-xl text-left font-bold bg-admiralty-900 text-white border border-amber-500 shadow-sm transition-all cursor-pointer`
-          : `nav-link-btn ${colClass}px-2.5 py-2 rounded-xl text-left font-semibold dossier-card heading-ink hover:border-amber-600 transition-all cursor-pointer`;
+          ? 'nav-link-btn px-2.5 py-2 rounded-xl text-left font-bold bg-admiralty-900 text-white border border-amber-500 shadow-sm transition-all cursor-pointer'
+          : 'nav-link-btn px-2.5 py-2 rounded-xl text-left font-semibold dossier-card heading-ink hover:border-amber-600 transition-all cursor-pointer';
       });
 
       renderActiveDrawer();
 
-      // Smoothly scroll right-hand drawer to top
       const rightPane = document.getElementById('rightDossierPane');
       if (rightPane) {
         rightPane.scrollTo({ top: 0, behavior: 'smooth' });
@@ -753,7 +787,7 @@
         search: beacon.filterKeyword,
         sector: beacon.filterSector,
         country: 'ALL',
-        beaconBadge: `${beacon.code} ${beacon.label}`
+        beaconBadge: beacon.badgeLabel
       });
     }
 
@@ -789,7 +823,7 @@
       if (activeSection === 'career') {
         container.innerHTML = `
           <header class="border-b border-slate-300 dark:border-slate-700 pb-4">
-            <span class="font-mono text-xs font-bold brass-ink uppercase tracking-widest">01 // CHRONOLOGICAL CAREER RECORD</span>
+            <span class="font-mono text-xs font-bold brass-ink uppercase tracking-widest">01 // CHRONOLOGICAL CAREER RECORD (7 ROLES)</span>
             <h2 class="font-display text-2xl sm:text-3xl font-extrabold heading-ink mt-1">CAREER TRAJECTORY (2001–PRESENT)</h2>
             <p class="muted-ink text-sm mt-1">
               25+ years of progressive leadership across Abu Dhabi Ports/KEO, Bureau Veritas, Artelia, Qatar Design Consortium, Green Crescent, SMEC India, and Anna University.
@@ -829,7 +863,7 @@
         container.innerHTML = `
           <header class="border-b border-slate-300 dark:border-slate-700 pb-4">
             <span class="font-mono text-xs font-bold brass-ink uppercase tracking-widest">02 // CORE TECHNICAL CAPABILITIES</span>
-            <h2 class="font-display text-2xl sm:text-3xl font-extrabold heading-ink mt-1">SKILLS &amp; EXPERTISE</h2>
+            <h2 class="font-display text-2xl sm:text-3xl font-extrabold heading-ink mt-1">CORE EXPERTISE &amp; COMPETENCIES</h2>
             <p class="muted-ink text-sm mt-1">
               Specialized marine, coastal, permitting, dredging, and environmental engineering governance across GCC and Indian statutory frameworks.
             </p>
@@ -840,7 +874,7 @@
               <article class="dossier-card rounded-2xl p-5 flex flex-col justify-between gap-3">
                 <div class="space-y-2">
                   <div class="flex items-center justify-between font-mono text-[11px]">
-                    <span class="px-2 py-0.5 rounded bg-admiralty-900 text-amber-300 font-bold">PILLAR ${s.code}</span>
+                    <span class="px-2 py-0.5 rounded bg-admiralty-900 text-amber-300 font-bold">COMPETENCY ${s.code}</span>
                     <span class="royal-ink font-bold truncate ml-2">${escapeHtml(s.authority)}</span>
                   </div>
                   <h3 class="font-sans text-base font-extrabold heading-ink">${escapeHtml(s.title)}</h3>
@@ -873,50 +907,70 @@
           return matchSector && matchCountry && matchQuery;
         });
 
+        const hasActiveFilter = Boolean(q || projectSectorFilter !== 'ALL' || projectCountryFilter !== 'ALL' || activeBeaconBadgeLabel);
+        const sectorsList = ['ALL', 'Marine & Coastal', 'Oil & Gas / Petrochemical', 'Civil & Utilities', 'India Water & Marine'];
+        const countriesList = ['ALL', 'UAE', 'Qatar', 'India', 'Bahrain', 'Saudi Arabia'];
+
         container.innerHTML = `
           <header class="border-b border-slate-300 dark:border-slate-700 pb-4 flex flex-wrap items-end justify-between gap-2">
             <div>
-              <span class="font-mono text-xs font-bold brass-ink uppercase tracking-widest">03 // COMPLETE PROJECT ARCHIVE</span>
+              <span class="font-mono text-xs font-bold brass-ink uppercase tracking-widest">03 // UNIFIED 36-PROJECT MASTER MATRIX</span>
               <h2 class="font-display text-2xl sm:text-3xl font-extrabold heading-ink mt-1">LANDMARK PROJECTS (${filtered.length} / ${PROJECTS_DATA.length})</h2>
             </div>
-            ${activeBeaconBadgeLabel ? `
-              <button type="button" onclick="clearBeaconProjectFilter()" class="px-3 py-1.5 rounded-xl bg-amber-100 text-amber-950 border border-amber-400 font-mono text-xs font-bold cursor-pointer">
-                FILTER: ${escapeHtml(activeBeaconBadgeLabel)} ✕ CLEAR
-              </button>
-            ` : ''}
+            <div class="flex flex-wrap items-center gap-2">
+              ${activeBeaconBadgeLabel ? `
+                <span class="px-3 py-1.5 rounded-xl bg-amber-100 text-amber-950 border border-amber-400 font-mono text-xs font-bold">
+                  BEACON: ${escapeHtml(activeBeaconBadgeLabel)}
+                </span>
+              ` : ''}
+              ${hasActiveFilter ? `
+                <button type="button" onclick="clearBeaconProjectFilter()" class="px-3 py-1.5 rounded-xl bg-admiralty-900 text-white font-mono text-xs font-bold cursor-pointer">
+                  RESET ALL FILTERS ✕
+                </button>
+              ` : ''}
+            </div>
           </header>
 
-          <!-- Search & Filter Controls -->
+          <!-- Search & Multi-Dimensional Filter Pills -->
           <div class="dossier-card rounded-2xl p-4 space-y-3">
-            <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
-              <div class="sm:col-span-6">
-                <input
-                  id="drawerProjectSearch"
-                  type="text"
-                  value="${escapeHtml(projectSearchQuery)}"
-                  oninput="onDrawerSearchInput(this.value)"
-                  placeholder="Search project, port, island, client, or authority..."
-                  class="w-full px-3.5 py-2 rounded-xl dossier-subcard text-xs sm:text-sm heading-ink placeholder-slate-500 focus:outline-none focus:border-blue-600"
-                />
+            <input
+              id="drawerProjectSearch"
+              type="text"
+              value="${escapeHtml(projectSearchQuery)}"
+              oninput="onDrawerSearchInput(this.value)"
+              placeholder="Search project, port, island, client, or statutory authority..."
+              class="w-full px-3.5 py-2 rounded-xl dossier-subcard text-xs sm:text-sm heading-ink placeholder-slate-500 focus:outline-none focus:border-blue-600"
+            />
+
+            <div class="space-y-2">
+              <div class="flex flex-wrap items-center gap-1.5 font-mono text-[10.5px]">
+                <span class="font-bold muted-ink mr-1">SECTOR:</span>
+                ${sectorsList.map(sec => {
+                  const count = sec === 'ALL' ? PROJECTS_DATA.length : PROJECTS_DATA.filter(p => p.sector === sec).length;
+                  const active = projectSectorFilter === sec;
+                  return `
+                    <button type="button" onclick="onDrawerSectorChange('${escapeHtml(sec)}')" class="px-2.5 py-1 rounded-lg font-bold transition-all cursor-pointer ${
+                      active ? 'bg-admiralty-900 text-amber-300 border border-amber-500' : 'dossier-subcard heading-ink hover:border-amber-600'
+                    }">
+                      ${sec === 'ALL' ? 'ALL' : escapeHtml(sec)} (${count})
+                    </button>
+                  `;
+                }).join('')}
               </div>
-              <div class="sm:col-span-3">
-                <select onchange="onDrawerCountryChange(this.value)" aria-label="Filter by Country" class="w-full px-3 py-2 rounded-xl dossier-subcard text-xs font-mono font-bold heading-ink cursor-pointer">
-                  <option value="ALL" ${projectCountryFilter === 'ALL' ? 'selected' : ''}>COUNTRY: ALL</option>
-                  <option value="UAE" ${projectCountryFilter === 'UAE' ? 'selected' : ''}>UAE</option>
-                  <option value="Qatar" ${projectCountryFilter === 'Qatar' ? 'selected' : ''}>Qatar</option>
-                  <option value="India" ${projectCountryFilter === 'India' ? 'selected' : ''}>India</option>
-                  <option value="Bahrain" ${projectCountryFilter === 'Bahrain' ? 'selected' : ''}>Bahrain</option>
-                  <option value="Saudi Arabia" ${projectCountryFilter === 'Saudi Arabia' ? 'selected' : ''}>Saudi Arabia</option>
-                </select>
-              </div>
-              <div class="sm:col-span-3">
-                <select onchange="onDrawerSectorChange(this.value)" aria-label="Filter by Sector" class="w-full px-3 py-2 rounded-xl dossier-subcard text-xs font-mono font-bold heading-ink cursor-pointer">
-                  <option value="ALL" ${projectSectorFilter === 'ALL' ? 'selected' : ''}>SECTOR: ALL</option>
-                  <option value="Marine & Coastal" ${projectSectorFilter === 'Marine & Coastal' ? 'selected' : ''}>Marine &amp; Coastal</option>
-                  <option value="India Water & Marine" ${projectSectorFilter === 'India Water & Marine' ? 'selected' : ''}>India Water &amp; Marine</option>
-                  <option value="Oil & Gas / Petrochemical" ${projectSectorFilter === 'Oil & Gas / Petrochemical' ? 'selected' : ''}>Oil &amp; Gas / Petrochem</option>
-                  <option value="Civil & Utilities" ${projectSectorFilter === 'Civil & Utilities' ? 'selected' : ''}>Civil &amp; Utilities</option>
-                </select>
+
+              <div class="flex flex-wrap items-center gap-1.5 font-mono text-[10.5px]">
+                <span class="font-bold muted-ink mr-1">COUNTRY:</span>
+                ${countriesList.map(cty => {
+                  const count = cty === 'ALL' ? PROJECTS_DATA.length : PROJECTS_DATA.filter(p => p.country === cty).length;
+                  const active = projectCountryFilter === cty;
+                  return `
+                    <button type="button" onclick="onDrawerCountryChange('${escapeHtml(cty)}')" class="px-2.5 py-1 rounded-lg font-bold transition-all cursor-pointer ${
+                      active ? 'bg-admiralty-blue text-white' : 'dossier-subcard heading-ink hover:border-blue-600'
+                    }">
+                      ${escapeHtml(cty)} (${count})
+                    </button>
+                  `;
+                }).join('')}
               </div>
             </div>
           </div>
@@ -951,74 +1005,68 @@
             </div>
           `}
         `;
-      } else if (activeSection === 'countries') {
+      } else if (activeSection === 'footprint') {
         container.innerHTML = `
           <header class="border-b border-slate-300 dark:border-slate-700 pb-4">
-            <span class="font-mono text-xs font-bold brass-ink uppercase tracking-widest">04 // INTERNATIONAL GEOGRAPHIC FOOTPRINT</span>
-            <h2 class="font-display text-2xl sm:text-3xl font-extrabold heading-ink mt-1">COUNTRIES &amp; REGULATORY JURISDICTIONS</h2>
+            <span class="font-mono text-xs font-bold brass-ink uppercase tracking-widest">04 // INTERNATIONAL &amp; SECTOR FOOTPRINT</span>
+            <h2 class="font-display text-2xl sm:text-3xl font-extrabold heading-ink mt-1">COUNTRIES &amp; TECHNICAL SECTORS</h2>
             <p class="muted-ink text-sm mt-1">
-              Click any country below to open its filtered portfolio of statutory approvals and engineering projects.
+              Click any country or technical sector card below to jump directly to its filtered projects inside <strong>03. Projects (36)</strong>.
             </p>
           </header>
 
-          <div class="space-y-4">
-            ${COUNTRIES_META.map(c => {
-              const count = PROJECTS_DATA.filter(p => p.country === c.name).length;
-              return `
-                <article class="dossier-card rounded-2xl p-5 space-y-3">
-                  <div class="flex flex-wrap items-center justify-between gap-2">
-                    <div>
-                      <div class="flex items-center gap-2 font-mono text-xs">
-                        <span class="px-2.5 py-0.5 rounded-full bg-admiralty-900 text-amber-300 font-bold">${count} PROJECTS</span>
-                        <span class="muted-ink font-semibold">${escapeHtml(c.coords)}</span>
+          <div class="space-y-3">
+            <h3 class="font-mono text-xs font-bold royal-ink uppercase tracking-wider">5 COUNTRIES &amp; STATUTORY JURISDICTIONS</h3>
+            <div class="space-y-3">
+              ${COUNTRIES_META.map(c => {
+                const count = PROJECTS_DATA.filter(p => p.country === c.name).length;
+                return `
+                  <article class="dossier-card rounded-2xl p-5 space-y-2.5">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                      <div>
+                        <div class="flex items-center gap-2 font-mono text-xs">
+                          <span class="px-2.5 py-0.5 rounded-full bg-admiralty-900 text-amber-300 font-bold">${count} PROJECTS</span>
+                          <span class="muted-ink font-semibold">${escapeHtml(c.coords)}</span>
+                        </div>
+                        <h4 class="font-display text-lg font-extrabold heading-ink mt-1">${escapeHtml(c.title)}</h4>
+                        <p class="font-mono text-xs font-bold royal-ink">${escapeHtml(c.regulators)}</p>
                       </div>
-                      <h3 class="font-display text-xl font-extrabold heading-ink mt-1.5">${escapeHtml(c.title)}</h3>
-                      <p class="font-mono text-xs font-bold royal-ink mt-0.5">${escapeHtml(c.regulators)}</p>
+                      <button type="button" onclick="navigateToSection('projects', { country: '${escapeHtml(c.name)}', sector: 'ALL', search: '', beaconBadge: '${escapeHtml(c.title)}' })" class="px-3.5 py-2 rounded-xl bg-admiralty-blue hover:bg-blue-800 text-white font-mono text-xs font-bold cursor-pointer shadow-sm">
+                        OPEN ${count} PROJECTS ↗
+                      </button>
                     </div>
-                    <button type="button" onclick="navigateToSection('projects', { country: '${escapeHtml(c.name)}', sector: 'ALL', search: '', beaconBadge: '${escapeHtml(c.title)}' })" class="px-4 py-2 rounded-xl bg-admiralty-blue hover:bg-blue-800 text-white font-mono text-xs font-bold cursor-pointer shadow-sm">
-                      INSPECT ${count} PROJECTS ↗
-                    </button>
-                  </div>
-                  <p class="text-sm body-ink leading-relaxed">${escapeHtml(c.summary)}</p>
-                </article>
-              `;
-            }).join('')}
+                    <p class="text-xs sm:text-sm body-ink leading-relaxed">${escapeHtml(c.summary)}</p>
+                  </article>
+                `;
+              }).join('')}
+            </div>
           </div>
-        `;
-      } else if (activeSection === 'sectors') {
-        container.innerHTML = `
-          <header class="border-b border-slate-300 dark:border-slate-700 pb-4">
-            <span class="font-mono text-xs font-bold brass-ink uppercase tracking-widest">05 // INFRASTRUCTURE &amp; MARITIME DOMAINS</span>
-            <h2 class="font-display text-2xl sm:text-3xl font-extrabold heading-ink mt-1">SECTORS &amp; PRACTICE AREAS</h2>
-            <p class="muted-ink text-sm mt-1">
-              Select a technical sector to filter matching projects across the Arabian Gulf and Indian coastline.
-            </p>
-          </header>
 
-          <div class="grid grid-cols-1 gap-4">
-            ${SECTORS_META.map(sec => {
-              const count = PROJECTS_DATA.filter(p => p.sector === sec.name).length;
-              return `
-                <article class="dossier-card rounded-2xl p-5 space-y-3">
-                  <div class="flex flex-wrap items-center justify-between gap-2">
-                    <div>
-                      <span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 font-mono text-[10px] font-bold">${escapeHtml(sec.badge)} • ${count} PROJECTS</span>
-                      <h3 class="font-display text-lg sm:text-xl font-extrabold heading-ink mt-1.5">${escapeHtml(sec.name)}</h3>
+          <div class="space-y-3 pt-2">
+            <h3 class="font-mono text-xs font-bold brass-ink uppercase tracking-wider">4 TECHNICAL PRACTICE SECTORS</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              ${SECTORS_META.map(sec => {
+                const count = PROJECTS_DATA.filter(p => p.sector === sec.name).length;
+                return `
+                  <article class="dossier-card rounded-2xl p-4 flex flex-col justify-between gap-3">
+                    <div class="space-y-1.5">
+                      <span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 font-mono text-[10px] font-bold">${escapeHtml(sec.badge)} • ${count}</span>
+                      <h4 class="font-sans text-base font-extrabold heading-ink">${escapeHtml(sec.name)}</h4>
+                      <p class="text-xs body-ink leading-relaxed">${escapeHtml(sec.summary)}</p>
                     </div>
-                    <button type="button" onclick="navigateToSection('projects', { sector: '${escapeHtml(sec.name)}', country: 'ALL', search: '', beaconBadge: '${escapeHtml(sec.name)}' })" class="px-4 py-2 rounded-xl bg-admiralty-900 hover:bg-admiralty-800 text-white font-mono text-xs font-bold cursor-pointer">
-                      FILTER SECTOR (${count}) ↗
+                    <button type="button" onclick="navigateToSection('projects', { sector: '${escapeHtml(sec.name)}', country: 'ALL', search: '', beaconBadge: '${escapeHtml(sec.name)}' })" class="w-full px-3 py-2 rounded-xl bg-admiralty-900 hover:bg-admiralty-800 text-white font-mono text-[11px] font-bold cursor-pointer">
+                      VIEW ${count} SECTOR PROJECTS ↗
                     </button>
-                  </div>
-                  <p class="text-sm body-ink leading-relaxed">${escapeHtml(sec.summary)}</p>
-                </article>
-              `;
-            }).join('')}
+                  </article>
+                `;
+              }).join('')}
+            </div>
           </div>
         `;
       } else if (activeSection === 'education') {
         container.innerHTML = `
           <header class="border-b border-slate-300 dark:border-slate-700 pb-4">
-            <span class="font-mono text-xs font-bold brass-ink uppercase tracking-widest">06 // ACADEMIC &amp; SCIENTIFIC CREDENTIALS</span>
+            <span class="font-mono text-xs font-bold brass-ink uppercase tracking-widest">05 // ACADEMIC &amp; SCIENTIFIC CREDENTIALS</span>
             <h2 class="font-display text-2xl sm:text-3xl font-extrabold heading-ink mt-1">EDUCATION &amp; PUBLICATIONS</h2>
           </header>
 
@@ -1080,7 +1128,7 @@
       } else if (activeSection === 'contact') {
         container.innerHTML = `
           <header class="border-b border-slate-300 dark:border-slate-700 pb-4">
-            <span class="font-mono text-xs font-bold brass-ink uppercase tracking-widest">07 // EXECUTIVE CONTACT &amp; CREDENTIALS</span>
+            <span class="font-mono text-xs font-bold brass-ink uppercase tracking-widest">06 // EXECUTIVE CONTACT &amp; CREDENTIALS</span>
             <h2 class="font-display text-2xl sm:text-3xl font-extrabold heading-ink mt-1">CONTACT &amp; VCARD EXPORT</h2>
             <p class="muted-ink text-sm mt-1">
               Available for senior marine &amp; environmental leadership roles, port master-plan advisory, and statutory permitting direction.
@@ -1111,11 +1159,13 @@
             </div>
 
             <div class="p-5 rounded-2xl dossier-card space-y-1">
-              <div class="font-mono text-xs font-bold royal-ink">INDIA MOBILE</div>
-              <a href="tel:+919003039100" class="font-sans text-lg font-extrabold heading-ink hover:text-blue-700">
+              <div class="font-mono text-xs font-bold royal-ink">INDIA MOBILE &amp; LINKEDIN</div>
+              <a href="tel:+919003039100" class="block font-sans text-base font-extrabold heading-ink hover:text-blue-700">
                 +91 900303 9100
               </a>
-              <div class="text-xs muted-ink">Chennai / India Direct</div>
+              <a href="https://www.linkedin.com/in/nirmalrajkumar" target="_blank" rel="noopener noreferrer" class="inline-block font-mono text-xs font-bold royal-ink hover:underline mt-0.5">
+                linkedin.com/in/nirmalrajkumar ↗
+              </a>
             </div>
           </div>
 
@@ -1125,9 +1175,12 @@
               <button type="button" onclick="downloadVCard()" class="px-4 py-2.5 rounded-xl bg-admiralty-900 hover:bg-admiralty-800 text-white font-bold shadow-sm cursor-pointer">
                 DOWNLOAD VCARD (.VCF)
               </button>
-              <button type="button" onclick="copyDossierContact()" class="px-4 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-950 royal-ink border border-blue-300 font-bold cursor-pointer">
-                COPY CONTACT SUMMARY
+              <button type="button" onclick="copyDossierEmail()" class="px-4 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-950 royal-ink border border-blue-300 font-bold cursor-pointer">
+                COPY EMAIL ADDRESS
               </button>
+              <a href="https://www.linkedin.com/in/nirmalrajkumar" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl dossier-subcard heading-ink hover:border-blue-600 font-bold">
+                LINKEDIN PROFILE ↗
+              </a>
               <button type="button" onclick="window.print()" class="px-4 py-2.5 rounded-xl bg-amber-50 dark:bg-amber-950 brass-ink border border-amber-300 font-bold cursor-pointer">
                 PRINT FULL EXECUTIVE CV (PDF)
               </button>
@@ -1178,7 +1231,6 @@
       resize();
       window.addEventListener('resize', resize);
 
-      // Hover detection & tooltip readout
       canvas.addEventListener('pointermove', e => {
         const rect = canvas.getBoundingClientRect();
         const mx = e.clientX - rect.left;
@@ -1200,7 +1252,6 @@
         canvas.style.cursor = 'default';
       });
 
-      // Click hit-testing (26px radius)
       canvas.addEventListener('click', e => {
         const rect = canvas.getBoundingClientRect();
         const mx = e.clientX - rect.left;
@@ -1224,7 +1275,7 @@
 
         ctx.clearRect(0, 0, w, h);
 
-        // 1. Atmospheric Sky Gradient (Golden-Hour Admiralty Day vs. Twilight Night Harbour)
+        // 1. Atmospheric Sky Gradient
         const skyGrad = ctx.createLinearGradient(0, 0, 0, horizonY);
         if (isNight) {
           skyGrad.addColorStop(0, '#040D1E');
@@ -1257,7 +1308,7 @@
         ctx.arc(orbX, orbY, 44, 0, Math.PI * 2);
         ctx.fill();
 
-        // 2. Distant GCC Glass Waterfront Skyline Towers (Left-Center)
+        // 2. Distant GCC Glass Waterfront Skyline Towers
         const towers = [
           { x: w * 0.16, w: 12, h: 36 },
           { x: w * 0.19, w: 15, h: 52 },
@@ -1265,7 +1316,7 @@
           { x: w * 0.25, w: 16, h: 58 },
           { x: w * 0.285, w: 13, h: 44 }
         ];
-        towers.forEach((tw, idx) => {
+        towers.forEach(tw => {
           ctx.fillStyle = isNight ? '#0A192F' : '#2C4A70';
           ctx.fillRect(tw.x, horizonY - tw.h, tw.w, tw.h);
           ctx.fillStyle = isNight ? 'rgba(251, 191, 36, 0.55)' : 'rgba(186, 230, 253, 0.45)';
@@ -1302,21 +1353,19 @@
           ctx.stroke();
         }
 
-        // 4. Port Quay Wall & Ship-to-Shore Container Gantry Cranes (Left-Center)
+        // 4. Port Quay Wall & Ship-to-Shore Container Gantry Cranes
         const quayX = w * 0.24;
         const quayW = w * 0.23;
         const quayY = horizonY + 4;
         ctx.fillStyle = '#1E293B';
         ctx.fillRect(quayX, quayY, quayW, 8);
 
-        // Stacked colourful shipping containers
         const containerColors = ['#B45309', '#1D4ED8', '#0F766E', '#DC2626'];
         for (let c = 0; c < 6; c++) {
           ctx.fillStyle = containerColors[c % containerColors.length];
           ctx.fillRect(quayX + 6 + c * 13, quayY - 6, 11, 6);
         }
 
-        // 3 STS Gantry Cranes
         [0.28, 0.34, 0.40].forEach(frac => {
           const cx = w * frac;
           ctx.strokeStyle = isNight ? '#F59E0B' : '#D97706';
@@ -1326,14 +1375,13 @@
           ctx.lineTo(cx - 2, quayY - 28);
           ctx.lineTo(cx + 4, quayY - 28);
           ctx.lineTo(cx + 7, quayY);
-          // Boom arm
           ctx.moveTo(cx - 10, quayY - 24);
           ctx.lineTo(cx + 18, quayY - 29);
           ctx.stroke();
         });
 
-        // Moving Container Vessel near Port Channel
-        const shipX = w * 0.43 + Math.sin(tick * 0.35) * 8;
+        // Animated Panamax Container Vessel Gliding Across Channel
+        const shipX = w * 0.43 + Math.sin(tick * 0.35) * 10;
         const shipY = horizonY + 14;
         ctx.fillStyle = '#0F172A';
         ctx.beginPath();
@@ -1348,7 +1396,7 @@
         ctx.fillStyle = '#D97706';
         ctx.fillRect(shipX - 8, shipY - 5, 24, 5);
 
-        // 5. Rocky Breakwater & Rotating Lighthouse (Far Left)
+        // 5. Rocky Breakwater, Crashing Sea Foam & Rotating Fresnel Lighthouse Beam
         const lhX = w * 0.13;
         const lhBaseY = horizonY + 14;
         ctx.fillStyle = '#334155';
@@ -1360,12 +1408,21 @@
         ctx.closePath();
         ctx.fill();
 
+        // Crashing Sea Foam along Breakwater
+        ctx.strokeStyle = 'rgba(248, 250, 252, 0.72)';
+        ctx.lineWidth = 1.4;
+        ctx.beginPath();
+        ctx.moveTo(2, lhBaseY + 8 + Math.sin(tick * 3) * 1.2);
+        ctx.lineTo(lhX + 19, lhBaseY + 6 + Math.cos(tick * 3) * 1.2);
+        ctx.stroke();
+
         // Lighthouse Tower
         ctx.fillStyle = '#F8FAFC';
         ctx.fillRect(lhX - 4, lhBaseY - 26, 8, 25);
         ctx.fillStyle = '#DC2626';
         ctx.fillRect(lhX - 4, lhBaseY - 19, 8, 6);
-        // Rotating Fresnel Lighthouse Beam
+
+        // Rotating Fresnel Beam
         const beamAngle = Math.sin(tick * 1.1) * 0.35;
         const beamGrad = ctx.createLinearGradient(lhX, lhBaseY - 25, lhX + 85, lhBaseY - 10);
         beamGrad.addColorStop(0, 'rgba(254, 240, 138, 0.72)');
@@ -1378,18 +1435,17 @@
         ctx.closePath();
         ctx.fill();
 
-        // 6. Capital Dredging Channel & Turbidity Monitoring Buoys (Center-Bottom)
+        // 6. Capital Dredging Channel & Turbidity Monitoring Buoys
         const dredgeX = w * 0.53;
         const dredgeY = h * 0.72;
-        const plumeGrad = ctx.createRadialGradient(dredgeX, dredgeY, 2, dredgeX, dredgeY, 34);
-        plumeGrad.addColorStop(0, 'rgba(56, 189, 248, 0.38)');
+        const plumeGrad = ctx.createRadialGradient(dredgeX, dredgeY, 2, dredgeX, dredgeY, 36);
+        plumeGrad.addColorStop(0, 'rgba(56, 189, 248, 0.42)');
         plumeGrad.addColorStop(1, 'rgba(56, 189, 248, 0)');
         ctx.fillStyle = plumeGrad;
         ctx.beginPath();
-        ctx.ellipse(dredgeX, dredgeY, 36, 12, 0, 0, Math.PI * 2);
+        ctx.ellipse(dredgeX, dredgeY, 38, 12, 0, 0, Math.PI * 2);
         ctx.fill();
 
-        // Bobbing Monitoring Buoys
         [-14, 15].forEach((offset, bi) => {
           const by = dredgeY + Math.sin(tick * 2 + bi) * 2;
           ctx.fillStyle = '#F59E0B';
@@ -1398,7 +1454,7 @@
           ctx.fill();
         });
 
-        // 7. Offshore Jacket Platform with Flickering Flare (Center-Right Horizon)
+        // 7. Offshore Jacket Platform with Flickering Flare & Support Vessel
         const rigX = w * 0.69;
         const rigY = horizonY - 2;
         ctx.strokeStyle = '#94A3B8';
@@ -1411,7 +1467,6 @@
         ctx.stroke();
         ctx.fillStyle = '#1E293B';
         ctx.fillRect(rigX - 9, rigY - 17, 22, 5);
-        // Flare stack & flickering flame
         ctx.beginPath();
         ctx.moveTo(rigX + 11, rigY - 17);
         ctx.lineTo(rigX + 17, rigY - 27);
@@ -1422,12 +1477,20 @@
         ctx.arc(rigX + 17, rigY - 28, flareR, 0, Math.PI * 2);
         ctx.fill();
 
+        // Offshore Support Vessel
+        const osvX = rigX - 24 + Math.cos(tick * 0.4) * 5;
+        const osvY = rigY + 8;
+        ctx.fillStyle = '#DC2626';
+        ctx.fillRect(osvX - 8, osvY, 16, 3.5);
+        ctx.fillStyle = '#F8FAFC';
+        ctx.fillRect(osvX - 6, osvY - 3, 5, 3);
+
         // 8. Multi-Layered Ecological & Port Island (Right Foreground/Midground)
         const islX = w * 0.86;
         const islY = h * 0.61;
-        // Turquoise shallow coral/reef shelf around island
+        // Turquoise Reef Shelf
         const reefGrad = ctx.createRadialGradient(islX, islY + 4, 12, islX, islY + 4, 62);
-        reefGrad.addColorStop(0, 'rgba(20, 184, 166, 0.55)');
+        reefGrad.addColorStop(0, 'rgba(20, 184, 166, 0.58)');
         reefGrad.addColorStop(0.65, 'rgba(13, 148, 136, 0.25)');
         reefGrad.addColorStop(1, 'rgba(13, 148, 136, 0)');
         ctx.fillStyle = reefGrad;
@@ -1435,10 +1498,10 @@
         ctx.ellipse(islX, islY + 4, 62, 22, 0, 0, Math.PI * 2);
         ctx.fill();
 
-        // Dashed subsurface bathymetric contour
+        // Subsurface Bathymetric Contour
         ctx.save();
         ctx.setLineDash([3, 3]);
-        ctx.strokeStyle = 'rgba(153, 246, 228, 0.45)';
+        ctx.strokeStyle = 'rgba(153, 246, 228, 0.48)';
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.ellipse(islX, islY + 4, 54, 18, 0, 0, Math.PI * 2);
@@ -1451,13 +1514,20 @@
         ctx.ellipse(islX, islY + 2, 42, 12, -0.04, 0, Math.PI * 2);
         ctx.fill();
 
-        // Terraced Limestone Revetment & Lush Green Coastal Vegetation
+        // Terraced Armour-Rock Revetment
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.ellipse(islX + 1, islY - 1, 36, 9.5, -0.04, Math.PI, Math.PI * 2);
+        ctx.stroke();
+
+        // Lush Green Coastal Vegetation
         ctx.fillStyle = '#15803D';
         ctx.beginPath();
         ctx.ellipse(islX + 2, islY - 1, 33, 8.5, -0.04, 0, Math.PI * 2);
         ctx.fill();
 
-        // Coastal Palm Clusters
+        // Coastal Palms
         [-14, -3, 9, 19].forEach(px => {
           ctx.fillStyle = '#166534';
           ctx.beginPath();
@@ -1465,7 +1535,7 @@
           ctx.fill();
         });
 
-        // Island Cruise Jetty & Marina T-Head Berth
+        // Cruise Jetty & T-Head Marina Berth with Moored Yacht
         ctx.strokeStyle = '#F8FAFC';
         ctx.lineWidth = 2;
         ctx.beginPath();
@@ -1474,6 +1544,12 @@
         ctx.moveTo(islX - 45, islY + 9);
         ctx.lineTo(islX - 39, islY + 15);
         ctx.stroke();
+
+        // Moored Coastal Yacht at Marina Berth
+        ctx.fillStyle = '#FFFFFF';
+        ctx.beginPath();
+        ctx.ellipse(islX - 45, islY + 14, 6, 2, -0.3, 0, Math.PI * 2);
+        ctx.fill();
 
         // 9. Render Interactive Landmark Beacons & Record Exact Hit-Testing Coordinates
         const pulse = (Math.sin(tick * 2.5) + 1) * 0.5;
@@ -1487,14 +1563,12 @@
 
           window._beaconScreenCoords.push({ id: b.id, x: bx, y: by, label: b.label, code: b.code });
 
-          // Outer Sonar Pulse Ring
           ctx.strokeStyle = isSelected || isHovered ? 'rgba(251, 191, 36, 0.92)' : 'rgba(56, 189, 248, 0.78)';
           ctx.lineWidth = isSelected ? 2 : 1.4;
           ctx.beginPath();
           ctx.arc(bx, by, (isSelected ? 10 : 7) + pulse * 5, 0, Math.PI * 2);
           ctx.stroke();
 
-          // Core Beacon Marker
           ctx.fillStyle = isSelected || isHovered ? '#FBBF24' : '#38BDF8';
           ctx.beginPath();
           ctx.arc(bx, by, isSelected || isHovered ? 5.2 : 4, 0, Math.PI * 2);
@@ -1504,14 +1578,13 @@
           ctx.lineWidth = 1.4;
           ctx.stroke();
 
-          // Beacon Code Pill
           ctx.font = '700 9px "JetBrains Mono", monospace';
           ctx.fillStyle = '#FFFFFF';
           ctx.textAlign = 'center';
           ctx.fillText(b.code, bx, by - 11);
         });
 
-        // Hover Tooltip Overlay on Canvas
+        // Hover Tooltip Overlay
         if (hoveredBeacon) {
           const tipText = `${hoveredBeacon.code} ${hoveredBeacon.label}`;
           ctx.font = '700 10px "JetBrains Mono", monospace';
@@ -1550,6 +1623,7 @@
       document.getElementById('modalProjectTitle').textContent = p.title;
       document.getElementById('modalProjectClient').textContent = p.client;
       document.getElementById('modalProjectLocation').textContent = p.location;
+      document.getElementById('modalProjectRegulator').textContent = p.regulator || 'Statutory Environmental Authority';
       document.getElementById('modalProjectScope').textContent = p.scope;
 
       const modal = document.getElementById('projectModal');
@@ -1592,25 +1666,16 @@
       showToast('VCARD DOWNLOADED // Dr_Nirmal_Rajkumar_CV.vcf');
     }
 
-    function copyDossierContact() {
-      const summary = [
-        'Dr. Nirmal Rajkumar — Senior Environment Expert (Marine)',
-        'Ph.D. Marine Biogeochemistry | 25+ Years Experience (UAE, Qatar, Bahrain, KSA, India)',
-        'Location: Abu Dhabi, UAE',
-        'Mobile (UAE): +971 56 349 2737 | Mobile (India): +91 900303 9100',
-        'Email: nirmalrajkumar@hotmail.com',
-        'Portfolio: https://chennainirmal.github.io/Nirmal-CV/'
-      ].join('\n');
-
+    function copyDossierEmail() {
       const textarea = document.createElement('textarea');
-      textarea.value = summary;
+      textarea.value = 'nirmalrajkumar@hotmail.com';
       textarea.style.position = 'fixed';
       textarea.style.opacity = '0';
       document.body.appendChild(textarea);
       textarea.select();
       try {
         document.execCommand('copy');
-        showToast('CONTACT DETAILS COPIED TO CLIPBOARD');
+        showToast('EMAIL COPIED // nirmalrajkumar@hotmail.com');
       } catch (e) {
         showToast('UNABLE TO COPY AUTOMATICALLY');
       }
@@ -1631,39 +1696,50 @@
       if (!container) return;
       container.innerHTML = `
         <div class="border-b-2 border-slate-900 pb-4">
-          <h1 class="text-2xl font-extrabold uppercase">Dr. Nirmal Rajkumar — Senior Environment Expert (Marine)</h1>
+          <h1 class="text-2xl font-extrabold uppercase">Dr. Nirmal Rajkumar, Ph.D. — Senior Environment Expert (Marine)</h1>
           <p class="text-xs font-mono mt-1">Ph.D. Marine Biogeochemistry | Abu Dhabi, UAE | +971 56 349 2737 | +91 900303 9100 | nirmalrajkumar@hotmail.com</p>
         </div>
 
-        <section class="space-y-3">
-          <h2 class="text-lg font-bold uppercase border-b border-slate-300 pb-1">Career Trajectory (2001–Present)</h2>
+        <section class="space-y-2.5">
+          <h2 class="text-base font-bold uppercase border-b border-slate-300 pb-1">01. Career Trajectory (2001–Present)</h2>
           ${ROLES_DATA.map(r => `
-            <div class="p-3 border border-slate-300 rounded-lg">
-              <div class="font-bold text-sm">${escapeHtml(r.title)} — ${escapeHtml(r.org)} (${escapeHtml(r.shortYear)}, ${escapeHtml(r.location)})</div>
+            <div class="p-2.5 border border-slate-300 rounded-lg">
+              <div class="font-bold text-xs">${escapeHtml(r.title)} — ${escapeHtml(r.org)} (${escapeHtml(r.shortYear)}, ${escapeHtml(r.location)})</div>
               <p class="text-xs mt-1">${escapeHtml(r.summary)}</p>
             </div>
           `).join('')}
         </section>
 
         <section class="space-y-2">
-          <h2 class="text-lg font-bold uppercase border-b border-slate-300 pb-1">Core Marine &amp; Regulatory Expertise</h2>
+          <h2 class="text-base font-bold uppercase border-b border-slate-300 pb-1">02. Core Marine &amp; Regulatory Expertise (8 Competencies)</h2>
           <div class="grid grid-cols-2 gap-2">
             ${SKILLS_DATA.map(s => `<div class="p-2 border border-slate-300 rounded text-xs"><strong>${escapeHtml(s.title)}:</strong> ${escapeHtml(s.detail)}</div>`).join('')}
           </div>
         </section>
 
-        <section class="space-y-2">
-          <h2 class="text-lg font-bold uppercase border-b border-slate-300 pb-1">Selected &amp; Landmark Projects (${PROJECTS_DATA.length})</h2>
-          <div class="space-y-1.5">
-            ${PROJECTS_DATA.map(p => `<div class="text-xs border-b border-slate-200 pb-1"><strong>${escapeHtml(p.title)}</strong> (${escapeHtml(p.period)} | ${escapeHtml(p.location)} | ${escapeHtml(p.client)}) — ${escapeHtml(p.scope)}</div>`).join('')}
+        <section class="space-y-1.5">
+          <h2 class="text-base font-bold uppercase border-b border-slate-300 pb-1">03. Complete Project Archive (${PROJECTS_DATA.length} Projects)</h2>
+          <div class="space-y-1">
+            ${PROJECTS_DATA.map(p => `<div class="text-xs border-b border-slate-200 pb-1"><strong>${escapeHtml(p.title)}</strong> [${escapeHtml(p.sector)}] (${escapeHtml(p.period)} | ${escapeHtml(p.location)} | ${escapeHtml(p.client)}) — ${escapeHtml(p.scope)}</div>`).join('')}
           </div>
         </section>
 
-        <section class="space-y-2">
-          <h2 class="text-lg font-bold uppercase border-b border-slate-300 pb-1">Education &amp; Peer-Reviewed Publications</h2>
+        <section class="space-y-1.5">
+          <h2 class="text-base font-bold uppercase border-b border-slate-300 pb-1">04. Geographic &amp; Sector Footprint</h2>
+          <p class="text-xs"><strong>Countries:</strong> UAE, Qatar, India, Bahrain, Kingdom of Saudi Arabia (KSA)</p>
+          <p class="text-xs"><strong>Sectors:</strong> Marine &amp; Coastal (17), Oil &amp; Gas / Petrochem (9), Civil &amp; Utilities (5), India Water &amp; Marine (5)</p>
+        </section>
+
+        <section class="space-y-1.5">
+          <h2 class="text-base font-bold uppercase border-b border-slate-300 pb-1">05. Education &amp; Peer-Reviewed Publications</h2>
           <p class="text-xs"><strong>Ph.D. Marine Biogeochemistry</strong> (2008, Anna University, Chennai) • <strong>M.Sc.</strong> (1998) • <strong>B.Sc.</strong> (1995)</p>
           <p class="text-xs">• Nirmal Rajkumar A., et al. (2008). Methane and nitrous oxide fluxes in the polluted Adyar River and estuary, SE India. <em>Marine Pollution Bulletin</em>, 56(12), 2043–2051.</p>
           <p class="text-xs">• Barnes J., Ramesh R., Purvaja R., Nirmal Rajkumar A., et al. (2006). Tidal dynamics and rainfall control N₂O and CH₄ emissions from a pristine mangrove creek. <em>Geophysical Research Letters</em>, 33(15), L15405.</p>
+        </section>
+
+        <section class="space-y-1">
+          <h2 class="text-base font-bold uppercase border-b border-slate-300 pb-1">06. Executive Contact</h2>
+          <p class="text-xs">Abu Dhabi, UAE • Mobile (UAE): +971 56 349 2737 • Mobile (India): +91 900303 9100 • Email: nirmalrajkumar@hotmail.com • LinkedIn: linkedin.com/in/nirmalrajkumar</p>
         </section>
       `;
     }
