@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DR. NIRMAL RAJKUMAR // BIO-MARINE SPATIAL COMMAND DECK</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
+            display: ['Orbitron', 'Space Grotesk', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            abyss: {
+              950: '#02060d',
+              900: '#040d1a',
+              850: '#071426',
+              800: '#0b1e38',
+            },
+            holo: {
+              cyan: '#00f5d4',
+              azure: '#00bbf9',
+              amber: '#ffb703',
+              emerald: '#10b981',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --holo-cyan: #00f5d4;
+      --holo-azure: #00bbf9;
+      --holo-amber: #ffb703;
+      --abyss-bg: #02060d;
+    }
+
+    body {
+      background-color: #02060d;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+
+    .hud-grid-bg {
+      background-image:
+        linear-gradient(to right, rgba(0, 245, 212, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 187, 249, 0.035) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    /* Glassmorphism 2.0 Spatial Panel */
+    .holo-card {
+      position: relative;
+      background: linear-gradient(145deg, rgba(6, 18, 34, 0.82) 0%, rgba(3, 10, 22, 0.92) 100%);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(0, 245, 212, 0.2);
+      box-shadow: 0 10px 36px rgba(0, 0, 0, 0.65), inset 0 0 28px rgba(0, 245, 212, 0.03);
+      transition: transform 0.22s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .holo-card:hover {
+      border-color: rgba(0, 245, 212, 0.48);
+      box-shadow: 0 14px 42px rgba(0, 187, 249, 0.16), inset 0 0 32px rgba(0, 245, 212, 0.06);
+    }
+
+    /* Corner Reticle Brackets */
+    .reticle-box::before,
+    .reticle-box::after {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      pointer-events: none;
+    }
+    .reticle-box::before {
+      top: -1px;
+      left: -1px;
+      border-top: 2px solid #00f5d4;
+      border-left: 2px solid #00f5d4;
+      border-top-left-radius: 12px;
+    }
+    .reticle-box::after {
+      bottom: -1px;
+      right: -1px;
+      border-bottom: 2px solid #ffb703;
+      border-right: 2px solid #ffb703;
+      border-bottom-right-radius: 12px;
+    }
+
+    /* Animated SVG Circuit Connector Flow */
+    .reticle-box::after {
+      bottom: -1px;
+      right: -1px;
+      border-bottom: 2px solid #ffb703;
+      border-right: 2px solid #ffb703;
+      border-bottom-right-radius: 12px;
+    }
+
+    /* Scanline Shimmer */
+    @keyframes scanline {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(420%); }
+    }
+    .scanline-overlay {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      border-radius: inherit;
+    }
+    .scanline-overlay::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 26%;
+      background: linear-gradient(to bottom, transparent, rgba(0, 245, 212, 0.06), transparent);
+      animation: scanline 7.5s linear infinite;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #02060d;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #0f294a;
+      border-radius: 9999px;
+      border: 1px solid rgba(0, 245, 212, 0.25);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00f5d4;
+    }
+
+    /* Print Dossier Mode */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+      }
+      #sonarCanvas, #audioDeckSection, #topTelemetryBar, #commandPaletteModal, .scanline-overlay, .no-print {
+        display: none !important;
+      }
+      .holo-card {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+      }
+      * {
+        color: #0f172a !important;
+        text-shadow: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased hud-grid-bg selection:bg-holo-cyan selection:text-abyss-950">
+
+  <!-- Full-Screen Animated Deep-Sea Sonar & Bathymetric Canvas -->
+  <canvas id="sonarCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+  <!-- 1. LIVE SPATIAL TELEMETRY HUD TOP BAR -->
+  <header id="topTelemetryBar" class="sticky top-0 z-40 bg-abyss-950/90 backdrop-blur-xl border-b border-holo-cyan/25">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-2.5">
+      <!-- System Status + Coordinates -->
+      <div class="flex items-center gap-3">
+        <a href="#hero-module" onclick="playUiClick()" class="flex items-center gap-2.5 group">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-holo-cyan opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-holo-cyan"></span>
+          </span>
+          <span class="font-mono text-[11px] sm:text-xs font-bold tracking-wider text-holo-cyan">
+            BIO-MARINE DECK <span class="text-slate-500">//</span> <span class="text-emerald-400">v4.2</span>
+          </span>
+        </a>
+        <span id="hudCoords" class="hidden xl:inline-block font-mono text-[11px] text-holo-amber bg-abyss-900/95 border border-holo-amber/30 px-2.5 py-0.5 rounded-md">
+          24.4539° N, 54.3773° E | DEPTH: -42.0m
+        </span>
+      </div>
+
+      <!-- Global Active Region Switcher (Synced with 3D Globe Beacons) -->
+      <div class="flex items-center gap-1 overflow-x-auto max-w-full py-0.5" role="group" aria-label="Global Region Telemetry Filter">
+        <button type="button" onclick="setGlobalRegion('ALL')" data-global-region="ALL" class="global-region-btn px-2.5 py-1 rounded-lg font-mono text-[11px] font-bold bg-holo-cyan text-abyss-950 transition-all cursor-pointer">
+          ALL SECTORS
+        </button>
+        <button type="button" onclick="setGlobalRegion('UAE')" data-global-region="UAE" class="global-region-btn px-2.5 py-1 rounded-lg font-mono text-[11px] font-medium bg-abyss-900/85 text-slate-300 hover:text-holo-cyan border border-white/10 transition-all cursor-pointer">
+          UAE
+        </button>
+        <button type="button" onclick="setGlobalRegion('Qatar')" data-global-region="Qatar" class="global-region-btn px-2.5 py-1 rounded-lg font-mono text-[11px] font-medium bg-abyss-900/85 text-slate-300 hover:text-holo-cyan border border-white/10 transition-all cursor-pointer">
+          QATAR
+        </button>
+        <button type="button" onclick="setGlobalRegion('India')" data-global-region="India" class="global-region-btn px-2.5 py-1 rounded-lg font-mono text-[11px] font-medium bg-abyss-900/85 text-slate-300 hover:text-holo-cyan border border-white/10 transition-all cursor-pointer">
+          INDIA
+        </button>
+        <button type="button" onclick="setGlobalRegion('Bahrain & KSA')" data-global-region="Bahrain & KSA" class="global-region-btn px-2.5 py-1 rounded-lg font-mono text-[11px] font-medium bg-abyss-900/85 text-slate-300 hover:text-holo-cyan border border-white/10 transition-all cursor-pointer">
+          KSA/BAHRAIN
+        </button>
+      </div>
+
+      <!-- Command Palette, Procedural Sonar Audio Toggle & Voice Brief -->
+      <div class="flex items-center gap-2 font-mono text-xs">
+        <button type="button" onclick="openCommandPalette()" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-abyss-900 hover:border-holo-cyan/50 text-slate-200 border border-white/15 transition-all cursor-pointer" title="Open Command Palette (Ctrl+K)">
+          <svg class="w-3.5 h-3.5 text-holo-cyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 103.5 10.5a7.5 7.5 0 0013.15 6.15z" />
+          </svg>
+          <span class="hidden sm:inline">CMD</span>
+          <kbd class="px-1.5 py-0.5 text-[10px] rounded bg-abyss-950 text-holo-amber border border-holo-amber/30">⌘K</kbd>
+        </button>
+
+        <button id="sonarSoundToggleBtn" type="button" onclick="toggleSonarAudio()" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-abyss-900 hover:border-holo-cyan/50 text-holo-cyan border border-holo-cyan/35 transition-all cursor-pointer" title="Toggle Procedural Bio-Sonar UI Audio">
+          <span id="sonarAudioDot" class="w-2 h-2 rounded-full bg-holo-cyan"></span>
+          <span id="sonarAudioText" class="text-[11px] font-semibold">SONAR: ON</span>
+        </button>
+
+        <button type="button" onclick="toggleVoiceBrief()" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-holo-azure/20 hover:bg-holo-azure/30 text-holo-cyan border border-holo-cyan/40 font-semibold transition-all cursor-pointer">
+          <span id="navAudioLabel">VOICE BRIEF</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-9 pb-20 space-y-14 sm:space-y-20">
+
+    <!-- 2. HERO SPATIAL IDENTITY & INTERACTIVE 3D BATHYMETRIC GLOBE MODULE -->
+    <section id="hero-module" class="holo-card reticle-box rounded-3xl p-6 sm:p-8 lg:p-10">
+      <div class="scanline-overlay"></div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Left Interactive 3D Wireframe Bathymetric Globe & Beacon Lock -->
+        <div class="lg:col-span-5 flex flex-col items-center justify-center">
+          <div class="relative w-full max-w-[330px] aspect-square rounded-3xl bg-abyss-950/90 border border-holo-cyan/30 shadow-[0_0_35px_rgba(0,245,212,0.14)] overflow-hidden">
+            <canvas id="bathymetricGlobeCanvas" class="w-full h-full block cursor-grab active:cursor-grabbing"></canvas>
+            <!-- Top Overlay Telemetry Tag -->
+            <div class="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none font-mono text-[10px]">
+              <span class="px-2 py-0.5 rounded bg-abyss-950/85 text-holo-cyan border border-holo-cyan/30">3D BATHYMETRIC GLOBE</span>
+              <span id="globeLockStatus" class="px-2 py-0.5 rounded bg-abyss-950/85 text-holo-amber border border-holo-amber/35">GLOBAL ORBIT</span>
+            </div>
+            <!-- Bottom Active Beacon Telemetry Readout -->
+            <div class="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl bg-abyss-950/90 border border-holo-cyan/25 pointer-events-none font-mono text-[10px] space-y-0.5">
+              <div class="flex items-center justify-between">
+                <span id="beaconNameReadout" class="text-white font-bold">ALL MARITIME SECTORS</span>
+                <span id="beaconDepthReadout" class="text-holo-cyan">DEPTH: -42.0m</span>
+              </div>
+              <div id="beaconRegReadout" class="text-holo-azure truncate">REGULATORS: EAD • MME/ASHGHAL • MOEF/CRZ • WORLD BANK</div>
+            </div>
+          </div>
+
+          <!-- Quick Beacon Lock Buttons -->
+          <div id="globeBeaconBar" class="mt-3 flex flex-wrap items-center justify-center gap-1.5 font-mono text-[10px]"></div>
+        </div>
+
+        <!-- Right Identity, Telemetry Chips, vCard Export & KPI Counters -->
+        <div class="lg:col-span-7 space-y-5">
+          <!-- Holographic Underwater Portrait + Identity Header -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5">
+            <div class="relative shrink-0 group">
+              <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl p-[2px] bg-gradient-to-br from-holo-cyan via-holo-azure to-holo-amber shadow-[0_0_28px_rgba(0,245,212,0.28)]">
+                <div class="relative w-full h-full rounded-[14px] overflow-hidden bg-abyss-950">
+                  <img
+                    id="profileAvatarImg"
+                    src="Nirmal.jpeg"
+                    alt="Dr. Nirmal Rajkumar — Senior Environment Expert (Marine)"
+                    class="hidden w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    onload="this.classList.remove('hidden'); document.getElementById('profileAvatarFallback')?.classList.add('hidden');"
+                    onerror="handleAvatarError(this)"
+                  />
+                  <!-- Self-Contained Underwater Bio-Marine Portrait Graphic (Works Without External Files) -->
+                  <div id="profileAvatarFallback" class="w-full h-full relative flex items-center justify-center bg-gradient-to-b from-[#0096c7] via-[#023e8a] to-[#03045e] overflow-hidden">
+                    <svg viewBox="0 0 120 120" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-label="Dr. Nirmal Rajkumar Underwater Marine Portrait">
+                      <defs>
+                        <radialGradient id="waterGlow" cx="50%" cy="20%" r="75%">
+                          <stop offset="0%" stop-color="#48cae4" stop-opacity="0.9"/>
+                          <stop offset="55%" stop-color="#0077b6" stop-opacity="0.85"/>
+                          <stop offset="100%" stop-color="#021124" stop-opacity="1"/>
+                        </radialGradient>
+                        <linearGradient id="suitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stop-color="#0f172a"/>
+                          <stop offset="100%" stop-color="#020617"/>
+                        </linearGradient>
+                      </defs>
+                      <!-- Sunlit Underwater Backdrop -->
+                      <rect width="120" height="120" fill="url(#waterGlow)"/>
+                      <!-- Caustic Light Rays -->
+                      <path d="M15 0 L38 0 L55 120 L25 120 Z" fill="#90e0ef" opacity="0.16"/>
+                      <path d="M68 0 L95 0 L110 120 L78 120 Z" fill="#caf0f8" opacity="0.14"/>
+                      <!-- Underwater Bubbles -->
+                      <circle cx="22" cy="28" r="2.5" fill="#caf0f8" opacity="0.65"/>
+                      <circle cx="28" cy="18" r="1.5" fill="#ffffff" opacity="0.8"/>
+                      <circle cx="96" cy="34" r="3" fill="#caf0f8" opacity="0.55"/>
+                      <circle cx="88" cy="20" r="1.8" fill="#ffffff" opacity="0.75"/>
+                      <circle cx="18" cy="56" r="1.8" fill="#90e0ef" opacity="0.5"/>
+                      <circle cx="102" cy="64" r="2.2" fill="#90e0ef" opacity="0.55"/>
+                      <!-- Shoulders & Polo Collar -->
+                      <path d="M18 120 C22 96, 38 89, 60 89 C82 89, 98 96, 102 120 Z" fill="url(#suitGrad)" stroke="#00f5d4" stroke-width="0.8" stroke-opacity="0.45"/>
+                      <path d="M47 89 L60 103 L73 89" fill="none" stroke="#38bdf8" stroke-width="1.4" opacity="0.7"/>
+                      <!-- Neck -->
+                      <rect x="51" y="74" width="18" height="18" rx="7" fill="#d49b72"/>
+                      <!-- Head -->
+                      <ellipse cx="60" cy="54" rx="20" ry="24" fill="#dfa67b"/>
+                      <!-- Styled Hair -->
+                      <path d="M39 50 C38 30, 48 22, 60 22 C73 22, 82 30, 81 50 C79 38, 73 33, 60 33 C47 33, 41 38, 39 50 Z" fill="#111827"/>
+                      <path d="M43 29 C48 20, 62 18, 74 25 C67 24, 53 24, 43 29 Z" fill="#1f2937"/>
+                      <!-- Beard & Mustache -->
+                      <path d="M41 56 C41 72, 50 79, 60 79 C70 79, 79 72, 79 56 C76 66, 69 72, 60 72 C51 72, 44 66, 41 56 Z" fill="#1f2937" opacity="0.9"/>
+                      <path d="M51 64 Q60 61 69 64" stroke="#111827" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+                      <!-- Smile -->
+                      <path d="M54 68 Q60 72 66 68" stroke="#7c2d12" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+                      <!-- Tinted Marine Sunglasses -->
+                      <rect x="42" y="46" width="16" height="10" rx="2.5" fill="#041e3a" stroke="#00f5d4" stroke-width="1.1"/>
+                      <rect x="62" y="46" width="16" height="10" rx="2.5" fill="#041e3a" stroke="#00f5d4" stroke-width="1.1"/>
+                      <line x1="58" y1="49" x2="62" y2="49" stroke="#00f5d4" stroke-width="1.3"/>
+                      <line x1="45" y1="48" x2="51" y2="54" stroke="#90e0ef" stroke-width="1" opacity="0.55"/>
+                      <line x1="65" y1="48" x2="71" y2="54" stroke="#90e0ef" stroke-width="1" opacity="0.55"/>
+                    </svg>
+                  </div>
+                  <div class="absolute inset-0 ring-1 ring-inset ring-holo-cyan/30 rounded-[14px] pointer-events-none"></div>
+                </div>
+              </div>
+              <!-- Status Beacon & Local Photo Loader -->
+              <label for="avatarUploadInput" title="Load custom photo file" class="no-print absolute -bottom-2 -right-2 px-2 py-0.5 rounded-md bg-abyss-950 hover:bg-holo-cyan hover:text-abyss-950 text-holo-cyan border border-holo-cyan/50 font-mono text-[9px] font-bold tracking-wider cursor-pointer shadow-lg transition-colors">
+                IMG // SYNC
+              </label>
+              <input id="avatarUploadInput" type="file" accept="image/*" class="hidden" onchange="handleAvatarUpload(event)" />
+            </div>
+
+            <div class="space-y-2 min-w-0">
+              <div class="flex flex-wrap items-center gap-1.5 font-mono text-[11px]">
+                <span class="px-2.5 py-0.5 rounded-full bg-holo-cyan/15 text-holo-cyan border border-holo-cyan/35 font-semibold">
+                  ID // MARINE-ENV-LEAD-01
+                </span>
+                <span class="px-2.5 py-0.5 rounded-full bg-holo-azure/15 text-holo-azure border border-holo-azure/35">
+                  PH.D. MARINE BIOGEOCHEMISTRY
+                </span>
+                <span class="px-2.5 py-0.5 rounded-full bg-holo-amber/15 text-holo-amber border border-holo-amber/35">
+                  ENGLISH • TAMIL
+                </span>
+              </div>
+
+              <div>
+                <h1 class="font-display text-3xl sm:text-4xl lg:text-[2.85rem] font-extrabold tracking-tight text-white uppercase leading-tight">
+                  Dr. Nirmal <span class="text-transparent bg-clip-text bg-gradient-to-r from-holo-cyan via-holo-azure to-emerald-400">Rajkumar</span>
+                </h1>
+                <p class="mt-1 font-display text-xs sm:text-base font-bold text-holo-azure tracking-wider">
+                  SENIOR ENVIRONMENT EXPERT (MARINE)
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            Senior marine &amp; environmental leader with <strong class="text-white">25+ years</strong> across <strong class="text-holo-cyan">UAE, Qatar, Bahrain, KSA, and India</strong>. Specialist in marine EIAs/PERs, statutory NOCs (<strong class="text-holo-amber">EAD, MME, Ashghal, MoEF/CRZ</strong>), dredging &amp; reclamation compliance, hydrodynamic/plume reviews, CEMP, and offshore HSEIA for landmark ports, ecological islands, and energy developments.
+          </p>
+
+          <!-- Interactive Regulatory & Statutory Clearance Badges -->
+          <div class="pt-1 space-y-1.5">
+            <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider">STATUTORY AUTHORITY &amp; LENDER CLEARANCE MATRIX (CLICK TO FILTER PROJECTS):</div>
+            <div class="flex flex-wrap items-center gap-1.5 font-mono text-[11px]">
+              <button type="button" onclick="filterByAuthority('EAD', 'UAE')" class="px-2.5 py-1 rounded-lg bg-abyss-950/95 hover:bg-holo-cyan/20 text-holo-cyan border border-holo-cyan/35 transition-all cursor-pointer">
+                EAD // ABU DHABI
+              </button>
+              <button type="button" onclick="filterByAuthority('Abu Dhabi Ports', 'UAE')" class="px-2.5 py-1 rounded-lg bg-abyss-950/95 hover:bg-holo-cyan/20 text-holo-azure border border-holo-azure/35 transition-all cursor-pointer">
+                ABU DHABI PORTS
+              </button>
+              <button type="button" onclick="filterByAuthority('ADNOC', 'UAE')" class="px-2.5 py-1 rounded-lg bg-abyss-950/95 hover:bg-holo-cyan/20 text-emerald-400 border border-emerald-400/35 transition-all cursor-pointer">
+                ADNOC / OFFSHORE HSEIA
+              </button>
+              <button type="button" onclick="filterByAuthority('Qatar', 'Qatar')" class="px-2.5 py-1 rounded-lg bg-abyss-950/95 hover:bg-holo-cyan/20 text-holo-amber border border-holo-amber/35 transition-all cursor-pointer">
+                MME &amp; ASHGHAL // QATAR
+              </button>
+              <button type="button" onclick="filterByAuthority('World Bank', 'India')" class="px-2.5 py-1 rounded-lg bg-abyss-950/95 hover:bg-holo-cyan/20 text-purple-300 border border-purple-400/35 transition-all cursor-pointer">
+                MOEF / CRZ / WORLD BANK / ADB
+              </button>
+            </div>
+          </div>
+
+          <!-- Contact & Action Controls -->
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-abyss-950/90 border border-white/10 text-slate-200">
+              <span class="text-holo-cyan">LOC:</span> Abu Dhabi, UAE
+            </span>
+            <a href="tel:+971563492737" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-abyss-950/90 hover:border-holo-cyan/50 border border-white/10 text-slate-200 transition-colors">
+              <span class="text-holo-cyan">UAE:</span> +971 56 349 2737
+            </a>
+            <a href="tel:+919003039100" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-abyss-950/90 hover:border-holo-cyan/50 border border-white/10 text-slate-200 transition-colors">
+              <span class="text-holo-azure">IND:</span> +91 900303 9100
+            </a>
+            <a href="mailto:nirmalrajkumar@hotmail.com" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-abyss-950/90 hover:border-holo-cyan/50 border border-white/10 text-holo-cyan transition-colors">
+              nirmalrajkumar@hotmail.com
+            </a>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2.5 font-mono text-xs">
+            <button type="button" onclick="downloadVCard()" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-holo-cyan to-holo-azure text-abyss-950 font-bold hover:brightness-110 transition-all cursor-pointer">
+              DOWNLOAD VCARD (.VCF)
+            </button>
+            <button type="button" onclick="copyDossierContact()" class="px-3.5 py-2 rounded-xl bg-holo-cyan/15 hover:bg-holo-cyan/25 text-holo-cyan border border-holo-cyan/40 font-semibold transition-all cursor-pointer">
+              COPY TELEMETRY
+            </button>
+            <button type="button" onclick="window.print()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/15 font-semibold transition-all cursor-pointer">
+              EXPORT DOSSIER (PDF)
+            </button>
+          </div>
+          <div id="copyToast" class="hidden font-mono text-xs text-emerald-400"></div>
+
+          <!-- Animated KPI Telemetry Counters -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-1">
+            <div class="p-3.5 rounded-2xl bg-abyss-950/90 border border-holo-cyan/25">
+              <div class="font-display text-2xl sm:text-3xl font-extrabold text-holo-cyan">25+</div>
+              <div class="font-mono text-[11px] text-slate-400 mt-1 uppercase">Years Experience</div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-abyss-950/90 border border-holo-azure/25">
+              <div class="font-display text-2xl sm:text-3xl font-extrabold text-holo-azure">36+</div>
+              <div class="font-mono text-[11px] text-slate-400 mt-1 uppercase">Landmark Projects</div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-abyss-950/90 border border-holo-amber/30">
+              <div class="font-display text-2xl sm:text-3xl font-extrabold text-holo-amber">5</div>
+              <div class="font-mono text-[11px] text-slate-400 mt-1 uppercase">Countries (GCC &amp; IND)</div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-abyss-950/90 border border-emerald-400/30">
+              <div class="font-display text-xl sm:text-2xl font-extrabold text-emerald-400 pt-1">Ph.D.</div>
+              <div class="font-mono text-[11px] text-slate-400 mt-1 uppercase">Biogeochemistry</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 4. AI VOICE SYNTHESIS / HOLOGRAPHIC BRIEFING DECK (COLLAPSIBLE COMPACT BAR) -->
+    <section id="audioDeckSection" class="holo-card reticle-box rounded-3xl p-4 sm:p-5">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div class="flex flex-wrap items-center gap-2.5">
+          <span class="font-mono text-xs font-bold tracking-widest text-holo-cyan uppercase">AI VOICE BRIEFING DECK</span>
+          <span id="briefStatusBadge" class="px-2.5 py-0.5 rounded-full font-mono text-[11px] font-semibold bg-abyss-950 text-holo-azure border border-holo-azure/35">
+            STANDBY
+          </span>
+          <span id="compactChapterLabel" class="hidden sm:inline font-mono text-[11px] text-slate-400">
+            01 // Executive Profile
+          </span>
+        </div>
+
+        <!-- Console Transport & Expand Controls -->
+        <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+          <button id="briefPlayBtn" type="button" onclick="toggleVoiceBrief()" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gradient-to-r from-holo-cyan to-holo-azure text-abyss-950 font-bold shadow-[0_0_20px_rgba(0,245,212,0.3)] hover:brightness-110 transition-all cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <span id="briefPlayText">PLAY BRIEF</span>
+          </button>
+          <button type="button" onclick="stopVoiceBrief()" class="px-3 py-2 rounded-xl bg-abyss-950 hover:bg-abyss-800 text-slate-200 border border-white/15 font-semibold transition-colors cursor-pointer">
+            STOP
+          </button>
+          <button id="toggleBriefExpandBtn" type="button" onclick="toggleBriefDeckExpand()" class="px-3 py-2 rounded-xl bg-abyss-950 hover:border-holo-cyan/40 text-holo-cyan border border-holo-cyan/30 font-semibold transition-colors cursor-pointer">
+            EXPAND DECK ▾
+          </button>
+        </div>
+      </div>
+
+      <div id="briefDeckBody" class="hidden mt-4 pt-4 border-t border-white/10 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
+          <span class="text-slate-400">Select any of the 6 executive chapters or customize voice speed:</span>
+          <div class="flex flex-wrap items-center gap-2">
+            <button id="speedToggleBtn" type="button" onclick="cycleSpeechRate()" class="px-3 py-2 rounded-xl bg-abyss-950 hover:border-holo-cyan/40 text-holo-cyan border border-white/15 font-semibold transition-colors cursor-pointer">
+              SPEED: 1.0x
+            </button>
+            <select id="voiceSelect" onchange="onVoiceChange()" aria-label="Synthesizer Voice Selector" class="max-w-[180px] px-3 py-2 rounded-xl bg-abyss-950 text-slate-200 border border-white/15 focus:outline-none focus:border-holo-cyan cursor-pointer">
+              <option value="">Default Neural Voice</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Real-Time Spectrum Visualizer Canvas + Live Word-Highlighted Transcript -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+          <div class="lg:col-span-4 bg-abyss-950/95 border border-holo-cyan/20 rounded-2xl p-3">
+            <div class="flex items-center justify-between font-mono text-[10px] text-slate-400 mb-1.5">
+              <span>ACOUSTIC SPECTRUM</span>
+              <span id="chapterIndexHud" class="text-holo-cyan">CH 01 / 06</span>
+            </div>
+            <canvas id="spectrumCanvas" class="w-full h-14 rounded-lg block"></canvas>
+          </div>
+
+          <div class="lg:col-span-8 bg-abyss-950/90 border border-holo-azure/25 rounded-2xl p-4 space-y-2">
+            <div class="flex items-center justify-between gap-2">
+              <span id="briefChapterHeading" class="font-display text-xs sm:text-sm font-bold text-holo-cyan uppercase">
+                01 // Executive Telemetry &amp; Profile
+              </span>
+              <span class="font-mono text-[10px] text-holo-amber">LIVE TRANSCRIPT SYNC</span>
+            </div>
+            <p id="briefTranscriptText" class="text-xs sm:text-sm text-slate-200 leading-relaxed min-h-[3rem]"></p>
+          </div>
+        </div>
+
+        <!-- 6 Selectable Briefing Chapters -->
+        <div id="briefChapterGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-2"></div>
+      </div>
+    </section>
+
+    <!-- 5. INTERACTIVE CAREER TRAJECTORY TIMELINE (2001–PRESENT) -->
+    <section id="trajectory" class="space-y-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="font-mono text-xs font-bold tracking-widest text-holo-cyan uppercase">CHRONOLOGICAL MISSION LOG // 2001–PRESENT</span>
+          <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white mt-1">CAREER TRAJECTORY</h2>
+          <p class="text-slate-400 text-sm mt-1">
+            Inspect 25+ years of progression across scientific biogeochemistry, EIA consultancy, and major port engineering leadership.
+          </p>
+        </div>
+        <div class="font-mono text-xs text-holo-amber" id="trajectoryFilterReadout">ACTIVE SECTOR: ALL REGIONS (7 ROLES)</div>
+      </div>
+
+      <div id="trajectoryNodes" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-2.5"></div>
+      <div id="trajectoryMissionLog" class="holo-card reticle-box rounded-3xl p-6 sm:p-8"></div>
+    </section>
+
+    <!-- 6. INTERACTIVE GEOSPATIAL & SECTOR PROJECT MATRIX -->
+    <section id="project-matrix" class="space-y-6">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+        <div>
+          <span class="font-mono text-xs font-bold tracking-widest text-holo-cyan uppercase">GEOSPATIAL &amp; INFRASTRUCTURE ARCHIVE</span>
+          <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white mt-1">PROJECT MATRIX</h2>
+          <p class="text-slate-400 text-sm mt-1">
+            Filter all 36 landmark marine, oil &amp; gas, civil utility, and Indian water/coastal projects. Click any mission card for full telemetry inspection.
+          </p>
+        </div>
+        <div id="matrixCounter" class="font-mono text-xs sm:text-sm font-semibold text-holo-cyan bg-abyss-900 border border-holo-cyan/30 px-3.5 py-2 rounded-xl">
+          DISPLAYING 36 / 36 MISSIONS
+        </div>
+      </div>
+
+      <!-- Multi-Filter Search & Sector Console -->
+      <div class="holo-card rounded-3xl p-4 sm:p-5 space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+          <div class="md:col-span-6 relative">
+            <input id="matrixSearchInput" type="text" oninput="renderProjectMatrix()" placeholder="Search project, client, authority, or location (e.g., Fujairah, Khalifa, Borouge, EAD, QDC, Andaman)..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-abyss-950 border border-holo-cyan/25 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-holo-cyan font-sans" />
+            <svg class="w-4 h-4 text-holo-cyan absolute left-3.5 top-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 103.5 10.5a7.5 7.5 0 0013.15 6.15z" />
+            </svg>
+          </div>
+          <div class="md:col-span-3">
+            <select id="matrixSectorSelect" onchange="renderProjectMatrix()" aria-label="Filter by Sector" class="w-full px-3.5 py-2.5 rounded-xl bg-abyss-950 border border-holo-cyan/25 text-xs sm:text-sm text-white font-mono focus:outline-none focus:border-holo-cyan cursor-pointer">
+              <option value="ALL">SECTOR: ALL</option>
+              <option value="Marine & Coastal">Marine &amp; Coastal</option>
+              <option value="Oil & Gas / Petrochemical">Oil &amp; Gas / Petrochemical</option>
+              <option value="Civil & Utilities">Civil &amp; Utilities</option>
+              <option value="India Water & Marine">India Water &amp; Marine</option>
+            </select>
+          </div>
+          <div class="md:col-span-3">
+            <select id="matrixRegionSelect" onchange="onMatrixRegionDropdown()" aria-label="Filter by Region" class="w-full px-3.5 py-2.5 rounded-xl bg-abyss-950 border border-holo-cyan/25 text-xs sm:text-sm text-white font-mono focus:outline-none focus:border-holo-cyan cursor-pointer">
+              <option value="ALL">REGION: ALL</option>
+              <option value="UAE">UAE</option>
+              <option value="Qatar">Qatar</option>
+              <option value="India">India</option>
+              <option value="Bahrain & KSA">Bahrain &amp; KSA</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Quick Sector Pills -->
+        <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+          <button type="button" onclick="setMatrixSector('ALL')" data-matrix-sector="ALL" class="matrix-sector-pill px-3 py-1.5 rounded-lg bg-holo-cyan text-abyss-950 font-bold cursor-pointer">ALL</button>
+          <button type="button" onclick="setMatrixSector('Marine & Coastal')" data-matrix-sector="Marine & Coastal" class="matrix-sector-pill px-3 py-1.5 rounded-lg bg-abyss-950 text-slate-300 border border-white/10 hover:border-holo-cyan/40 cursor-pointer">MARINE &amp; COASTAL</button>
+          <button type="button" onclick="setMatrixSector('Oil & Gas / Petrochemical')" data-matrix-sector="Oil & Gas / Petrochemical" class="matrix-sector-pill px-3 py-1.5 rounded-lg bg-abyss-950 text-slate-300 border border-white/10 hover:border-holo-cyan/40 cursor-pointer">OIL, GAS &amp; PETROCHEM</button>
+          <button type="button" onclick="setMatrixSector('Civil & Utilities')" data-matrix-sector="Civil & Utilities" class="matrix-sector-pill px-3 py-1.5 rounded-lg bg-abyss-950 text-slate-300 border border-white/10 hover:border-holo-cyan/40 cursor-pointer">CIVIL &amp; UTILITIES</button>
+          <button type="button" onclick="setMatrixSector('India Water & Marine')" data-matrix-sector="India Water & Marine" class="matrix-sector-pill px-3 py-1.5 rounded-lg bg-abyss-950 text-slate-300 border border-white/10 hover:border-holo-cyan/40 cursor-pointer">INDIA WATER &amp; MARINE</button>
+          <button type="button" onclick="resetMatrixFilters()" class="ml-auto text-holo-amber hover:text-holo-cyan underline cursor-pointer">RESET PARAMETERS</button>
+        </div>
+      </div>
+
+      <div id="projectMatrixGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+      <div id="matrixShowMoreWrapper" class="flex justify-center pt-2"></div>
+    </section>
+
+    <!-- 7. CORE COMPETENCIES HOLOGRAPHIC RADAR CHART & MODULES -->
+    <section id="radar-vault" class="space-y-6">
+      <div>
+        <span class="font-mono text-xs font-bold tracking-widest text-holo-cyan uppercase">CAPABILITY DIAGNOSTICS // 9 CORE VECTORS</span>
+        <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white mt-1">CORE COMPETENCIES RADAR</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div class="lg:col-span-5 holo-card reticle-box rounded-3xl p-5 sm:p-6 flex flex-col items-center">
+          <div class="w-full flex items-center justify-between font-mono text-[11px] text-slate-400 mb-2">
+            <span>9-AXIS CAPABILITY MESH</span>
+            <span id="radarActiveAxisLabel" class="text-holo-cyan font-semibold">SELECT NODE</span>
+          </div>
+          <svg id="competencyRadarSvg" viewBox="0 0 380 380" class="w-full max-w-[360px] h-auto"></svg>
+          <p class="text-[11px] font-mono text-slate-400 text-center mt-2">
+            Click any perimeter vertex to inspect vector details
+          </p>
+        </div>
+
+        <div id="competencyModulesGrid" class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+      </div>
+    </section>
+
+    <!-- 8. ACADEMIC CREDENTIALS VAULT -->
+    <section id="academic-vault" class="holo-card reticle-box rounded-3xl p-6 sm:p-8 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-white/10 pb-4">
+        <div>
+          <span class="font-mono text-xs font-bold tracking-widest text-holo-cyan uppercase">ACADEMIC FOUNDATION</span>
+          <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-white mt-1">EDUCATION CREDENTIALS</h2>
+        </div>
+        <span class="font-mono text-xs text-holo-amber">VERIFIED ACADEMIC DEGREES</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-5 rounded-2xl bg-abyss-950/90 border border-holo-cyan/30 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between font-mono text-xs">
+              <span class="text-holo-cyan font-bold">2008 // DOCTORAL</span>
+              <span class="px-2 py-0.5 rounded bg-holo-cyan/15 text-holo-cyan">Ph.D.</span>
+            </div>
+            <h3 class="font-display font-bold text-white text-base sm:text-lg mt-2">Doctor of Philosophy (Ph.D.)</h3>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1">Marine Biogeochemistry, Anna University, Chennai</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 font-mono text-[11px] text-emerald-400">
+            SPECIALIZATION: MARINE BIOGEOCHEMISTRY
+          </div>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-abyss-950/90 border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between font-mono text-xs">
+              <span class="text-holo-azure font-bold">1998 // POSTGRADUATE</span>
+              <span class="px-2 py-0.5 rounded bg-white/10 text-slate-300">M.Sc.</span>
+            </div>
+            <h3 class="font-display font-bold text-white text-base sm:text-lg mt-2">Master of Science (M.Sc.)</h3>
+            <p class="text-xs sm:text-sm text-slate-400 mt-1">Postgraduate Science Degree</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 font-mono text-[11px] text-slate-400">
+            CONFERRED: 1998
+          </div>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-abyss-950/90 border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between font-mono text-xs">
+              <span class="text-holo-azure font-bold">1995 // UNDERGRADUATE</span>
+              <span class="px-2 py-0.5 rounded bg-white/10 text-slate-300">B.Sc.</span>
+            </div>
+            <h3 class="font-display font-bold text-white text-base sm:text-lg mt-2">Bachelor of Science (B.Sc.)</h3>
+            <p class="text-xs sm:text-sm text-slate-400 mt-1">Undergraduate Science Degree</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 font-mono text-[11px] text-slate-400">
+            CONFERRED: 1995
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Project Telemetry Inspection Modal -->
+  <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-abyss-950/85 backdrop-blur-md" role="dialog" aria-modal="true" aria-labelledby="modalProjectTitle">
+    <div class="holo-card reticle-box rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-5 relative">
+      <div class="flex items-start justify-between gap-4 border-b border-white/10 pb-4">
+        <div>
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+            <span id="modalProjectSector" class="px-2.5 py-0.5 rounded-full bg-holo-cyan/20 text-holo-cyan border border-holo-cyan/35 font-semibold"></span>
+            <span id="modalProjectPeriod" class="text-holo-amber font-semibold"></span>
+          </div>
+          <h3 id="modalProjectTitle" class="font-display text-xl sm:text-2xl font-bold text-white mt-2"></h3>
+        </div>
+        <button type="button" onclick="closeProjectModal()" class="p-2 rounded-xl bg-abyss-950 hover:bg-white/10 text-slate-300 hover:text-white border border-white/15 font-mono text-xs cursor-pointer">
+          ESC // CLOSE
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
+        <div class="p-3.5 rounded-2xl bg-abyss-950/90 border border-white/10">
+          <div class="text-slate-400">CLIENT / LEAD PARTNER</div>
+          <div id="modalProjectClient" class="text-white font-semibold mt-1"></div>
+        </div>
+        <div class="p-3.5 rounded-2xl bg-abyss-950/90 border border-white/10">
+          <div class="text-slate-400">GEOSPATIAL SECTOR</div>
+          <div id="modalProjectLocation" class="text-holo-cyan font-semibold mt-1"></div>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-abyss-950/90 border border-holo-cyan/20 space-y-1.5">
+        <div class="font-mono text-xs text-holo-azure uppercase">Technical Scope &amp; Regulatory Deliverables</div>
+        <p id="modalProjectScope" class="text-sm sm:text-base text-slate-200 leading-relaxed"></p>
+      </div>
+
+      <div class="flex justify-end">
+        <button type="button" onclick="closeProjectModal()" class="px-5 py-2.5 rounded-xl bg-holo-cyan text-abyss-950 font-mono text-xs font-bold hover:brightness-110 transition-all cursor-pointer">
+          ACKNOWLEDGE TELEMETRY
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spotlight Command Palette Modal (Ctrl+K / Cmd+K) -->
+  <div id="commandPaletteModal" class="fixed inset-0 z-50 hidden items-start justify-center pt-16 sm:pt-24 px-4 bg-abyss-950/85 backdrop-blur-md" role="dialog" aria-modal="true" aria-label="Spotlight Command Palette">
+    <div class="holo-card reticle-box rounded-3xl max-w-2xl w-full overflow-hidden shadow-[0_24px_70px_rgba(0,0,0,0.85)]">
+      <div class="p-4 border-b border-holo-cyan/20 flex items-center gap-3 bg-abyss-950/95">
+        <svg class="w-5 h-5 text-holo-cyan shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 103.5 10.5a7.5 7.5 0 0013.15 6.15z" />
+        </svg>
+        <input id="commandPaletteInput" type="text" oninput="renderCommandResults()" placeholder="Type a command, project, regulator (EAD, MME, CRZ, World Bank), or chapter..." class="w-full bg-transparent text-sm sm:text-base text-white placeholder-slate-500 focus:outline-none font-sans" />
+        <button type="button" onclick="closeCommandPalette()" class="px-2.5 py-1 rounded-lg bg-abyss-900 text-slate-400 hover:text-white font-mono text-[11px] border border-white/10 cursor-pointer">
+          ESC
+        </button>
+      </div>
+      <div id="commandResultsList" class="max-h-96 overflow-y-auto p-3 space-y-1.5 bg-abyss-900/90"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative z-10 border-t border-holo-cyan/15 bg-abyss-950/95 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slate-400">
+      <div>
+        <span class="text-white font-bold">DR. NIRMAL RAJKUMAR</span> // SENIOR ENVIRONMENT EXPERT (MARINE) // PH.D. MARINE BIOGEOCHEMISTRY
+      </div>
+      <div>
+        ABU DHABI, UAE • +971 56 349 2737 • NIRMALRAJKUMAR@HOTMAIL.COM
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // =========================================================================
+    // 0. SAFE HTML ESCAPING UTILITY
+    // =========================================================================
+
+    function escapeHtml(str) {
+      return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    // =========================================================================
+    // 1. COMPLETE STRUCTURED CV DATA (100% PRESERVED)
+    // =========================================================================
+
+    const ROLES_DATA = [
+      {
+        id: 'ad-ports-keo',
+        shortYear: '2025–PRESENT',
+        period: 'Jul 2025 – Present',
+        title: 'Senior Design Engineer - Environmental',
+        org: 'Abu Dhabi Ports / KEO International Consultants',
+        location: 'Abu Dhabi, UAE',
+        region: 'UAE',
+        summary: 'Lead environmental management and statutory permitting for major marine and coastal developments, integrating technical environmental inputs into ports, commercial terminals, jetties, marinas, coastal reclamation, and ecological-island master developments.',
+        bullets: [
+          'Manage EIA/PER, CEMP, and statutory NOC processes across landmark maritime developments.',
+          'Review marine baseline studies, dredging and reclamation assessments, marine ecology, hydrodynamic and sediment-plume modelling, contractor method statements, and environmental monitoring programmes.',
+          'Direct environmental consultants and interface across multidisciplinary engineering teams and regulatory authorities (EAD).'
+        ]
+      },
+      {
+        id: 'bureau-veritas',
+        shortYear: '2024–2025',
+        period: 'Jan 2024 – May 2025',
+        title: 'Senior Environmental Consultant',
+        org: 'Bureau Veritas',
+        location: 'Abu Dhabi, UAE',
+        region: 'UAE',
+        summary: 'Managed multi-sector environmental consultancy assignments covering EIA, CEMP, HSEIA, regulatory approvals, and compliance audits for major marine, reclamation, civil infrastructure, industrial, and oil-and-gas projects.',
+        bullets: [
+          'Coordinated environmental baseline surveys and specialist technical studies.',
+          'Managed project schedules, deliverables, and budgets across concurrent high-value assignments.',
+          'Provided strategic environmental advisory support to corporate clients and engineering execution teams.'
+        ]
+      },
+      {
+        id: 'artelia',
+        shortYear: '2022–2023',
+        period: 'Aug 2022 – Dec 2023',
+        title: 'Senior Environmental Engineer',
+        org: 'Artelia',
+        location: 'Abu Dhabi, UAE',
+        region: 'UAE',
+        summary: 'Directed environmental studies and provided technical advisory on UAE and Qatar statutory requirements across dredging, coastal, and infrastructure schemes.',
+        bullets: [
+          'Prepared and reviewed comprehensive EIA, CEMP, environmental monitoring, and audit documentation.',
+          'Supported dredging performance monitoring; audited contractor compliance and method statements.',
+          'Authored technical proposals and cost estimates; coordinated approvals with environmental authorities.'
+        ]
+      },
+      {
+        id: 'qdc',
+        shortYear: '2018–2022',
+        period: 'Nov 2018 – Jan 2022',
+        title: 'Environmental Expert',
+        org: 'Qatar Design Consortium (QDC)',
+        location: 'Doha, Qatar',
+        region: 'Qatar',
+        summary: 'Managed EIA, CEMP, and environmental compliance audit assignments for major marine, infrastructure, and industrial schemes across Qatar.',
+        bullets: [
+          'Coordinated baseline surveys, specialist consultants, and contractors.',
+          'Established construction environmental management and monitoring frameworks.',
+          'Controlled project programmes and budgets; liaised closely with Qatari authorities (MME, Ashghal) to obtain statutory permits.'
+        ]
+      },
+      {
+        id: 'gceec',
+        shortYear: '2014–2018',
+        period: 'Oct 2014 – Jun 2018',
+        title: 'Senior Environmental Engineer',
+        org: 'Green Crescent Environmental Engineering Consultancy',
+        location: 'Abu Dhabi, UAE',
+        region: 'UAE',
+        summary: 'Led environmental consultancy projects from initial proposal through technical completion across large-scale coastal, industrial, and infrastructure developments in the UAE.',
+        bullets: [
+          'Conducted marine and terrestrial baseline investigations.',
+          'Authored EIA, CEMP, environmental audit, and monitoring reports.',
+          'Secured statutory approvals and executed on-site CEMP compliance audits.'
+        ]
+      },
+      {
+        id: 'smec-india',
+        shortYear: '2008–2014',
+        period: 'Sep 2008 – Sep 2014',
+        title: 'Environmental Engineer',
+        org: 'SMEC India',
+        location: 'India',
+        region: 'India',
+        summary: 'Managed environmental baseline studies, EIA/EMP formulation, and construction environmental compliance for major civil infrastructure, ports, and fishing harbour developments.',
+        bullets: [
+          'Executed field monitoring, inspections, and public stakeholder consultations.',
+          'Secured Environmental and Coastal Regulation Zone (CRZ) statutory clearances.',
+          'Delivered environmental compliance on projects funded by the World Bank and Asian Development Bank.'
+        ]
+      },
+      {
+        id: 'anna-univ',
+        shortYear: '2001–2008',
+        period: 'Apr 2001 – Sep 2008',
+        title: 'Research Associate',
+        org: 'Institute for Ocean Management, Anna University',
+        location: 'Chennai, India',
+        region: 'India',
+        summary: 'Conducted marine environmental baseline surveys, EIA investigations, and scientific research on marine pollution, coastal water and sediment biogeochemistry, and greenhouse gas dynamics.',
+        bullets: [
+          'Directed field sampling and advanced laboratory instrumentation.',
+          'Contributed to international marine research programmes funded by the World Bank, Asian Development Bank (ADB), UK NERC, and Government of India.',
+          'Earned Ph.D. in Marine Biogeochemistry (2008) from Anna University, Chennai.'
+        ]
+      }
+    ];
+
+    const PROJECTS_DATA = [
+      // Marine & Coastal
+      { title: 'Environmental Studies for 2026 Maritime Projects', client: 'Abu Dhabi Ports / WKC', location: 'Abu Dhabi, UAE', region: 'UAE', sector: 'Marine & Coastal', period: '2026–Present', scope: 'Preliminary Environmental Reviews (PERs) for Nad Al Sheba, Dhanna Port Expansion, and Marine Facilities at Tarif.' },
+      { title: 'Fujairah Terminal 2, Port of Fujairah', client: 'Abu Dhabi Ports / WKC', location: 'Fujairah, UAE', region: 'UAE', sector: 'Marine & Coastal', period: '2026–Present', scope: 'Comprehensive EIA for terminal development, capital dredging, coastal reclamation, and port infrastructure.' },
+      { title: 'Fteysi Island North Ecological Island Expansion (FN4)', client: 'Abu Dhabi Ports / GHD', location: 'Abu Dhabi, UAE', region: 'UAE', sector: 'Marine & Coastal', period: '2026–Present', scope: 'EIA study, hydrodynamic modelling review, and environmental coordination for ecological island creation.' },
+      { title: 'Sir Bani Yas Island Cruise Jetty & Dasah Bay Superyacht Marina', client: 'Abu Dhabi Ports / GHD', location: 'Abu Dhabi, UAE', region: 'UAE', sector: 'Marine & Coastal', period: '2026–Present', scope: 'EIA and coastal baseline investigations for dedicated cruise jetty and luxury superyacht marina works.' },
+      { title: 'Khalifa Port Expansion 2030', client: 'Abu Dhabi Ports / Hydro Qual', location: 'Abu Dhabi, UAE', region: 'UAE', sector: 'Marine & Coastal', period: '2025–2026', scope: 'EIA technical direction, marine hydrodynamic inputs, and ecological assessment for container terminal expansion.' },
+      { title: 'East Hidd & Al Naheel Coastal Reclamation Projects', client: 'Ministry of Works / AECOM', location: 'Kingdom of Bahrain', region: 'Bahrain & KSA', sector: 'Marine & Coastal', period: '2024', scope: 'EIA and environmental permitting for massive offshore reclamation packages and coastal revetments.' },
+      { title: 'South Al Mussafah Channel Capital Dredging', client: 'Environment Agency - Abu Dhabi (EAD) / Artelia', location: 'Abu Dhabi, UAE', region: 'UAE', sector: 'Marine & Coastal', period: '2022–2024', scope: 'Dredging performance monitoring, environmental effectiveness evaluation, and water turbidity assessments.' },
+      { title: 'Al Aryam Marine Works', client: 'Abu Dhabi Ports / Septech', location: 'Abu Dhabi, UAE', region: 'UAE', sector: 'Marine & Coastal', period: '2022', scope: 'CEMP preparation and statutory compliance for floating pontoons, berthing facilities, and shaded coastal structures.' },
+      { title: 'Ras Laffan Port South Channel Navigation Leading Lights', client: 'Qatar Petroleum / QDC', location: 'Ras Laffan, Qatar', region: 'Qatar', sector: 'Marine & Coastal', period: '2021', scope: 'ENVID, Environmental Risk Assessment, and Marine Waste Management Strategy for navigation aids.' },
+      { title: 'Qetaifan Island North Development (Packages 2B & 2C)', client: 'Al Jaber / Atkins / QDC', location: 'Doha, Qatar', region: 'Qatar', sector: 'Marine & Coastal', period: '2019–2021', scope: 'CEMPs, marine works compliance, and coastal water monitoring for premier resort island and theme park.' },
+      { title: 'Al Areesh Shrimp Aquaculture Farm', client: 'MME / ITQAN', location: 'Qatar', region: 'Qatar', sector: 'Marine & Coastal', period: '2021', scope: 'Environmental Impact Assessment and marine ecology survey for large-scale commercial aquaculture facility.' },
+      { title: 'Port of Fujairah Service Harbour', client: 'GCEEC', location: 'Fujairah, UAE', region: 'UAE', sector: 'Marine & Coastal', period: '2017–2018', scope: 'EIA for marine breakwaters, service harbour quays, and associated landward administrative facilities.' },
+      { title: 'Saadiyat Island Groynes & Private Beach Protection', client: 'Miral / GCEEC', location: 'Abu Dhabi, UAE', region: 'UAE', sector: 'Marine & Coastal', period: '2017–2018', scope: 'CEMP compliance audits and coastal monitoring for rock groynes, shoreline stabilisation, and beach nourishment.' },
+      { title: 'Yas Island South IDR Marine Components', client: 'Miral / NSCC-AST', location: 'Abu Dhabi, UAE', region: 'UAE', sector: 'Marine & Coastal', period: '2017–2018', scope: 'CEMP construction compliance audits and marine water quality monitoring for coastal leisure development.' },
+      { title: 'Dibba Commercial Marine Shellfish Farm', client: 'East Coast Shellfish / GCEEC', location: 'Fujairah, UAE', region: 'UAE', sector: 'Marine & Coastal', period: '2016', scope: 'Marine EIA, water quality monitoring, and statutory aquaculture permitting for offshore oyster concession.' },
+      { title: 'Yasat Island Submarine Power Cable Laying', client: 'EDF / DEWA / GCEEC', location: 'Abu Dhabi, UAE', region: 'UAE', sector: 'Marine & Coastal', period: '2017', scope: 'Marine Environmental Impact Assessment for subsea high-voltage power transmission cables across sensitive marine zones.' },
+
+      // India Water & Marine
+      { title: 'Four Fishery Harbours Reconstruction & Modernisation', client: 'Department of Fisheries / World Bank ETRP', location: 'Tamil Nadu, India', region: 'India', sector: 'India Water & Marine', period: '2008–2014', scope: 'DPR, EIA/EMP, public consultation, MoEF/CRZ clearances and construction environmental support for Chinnamuttom, Pazhayar, Nagapattinam and Mallipattinam.' },
+      { title: 'Marine EIAs for Ports, Harbours and Dredging', client: 'World Bank / ADB / Government of Tamil Nadu', location: 'Tamil Nadu, India', region: 'India', sector: 'India Water & Marine', period: '2004–2008', scope: 'Impact assessment for Chennai Port and Tamil Nadu fishing harbours, including dredging and tsunami-rehabilitation works at Cuddalore and Nagapattinam.' },
+      { title: 'Coolant-Water Intake & Outfall Assessments', client: 'TNEB / Koodankulam Nuclear Power Plant', location: 'Tamil Nadu, India', region: 'India', sector: 'India Water & Marine', period: '2006–2007', scope: 'Marine impact assessments for thermal and nuclear power facilities at Tuticorin and Koodankulam.' },
+      { title: 'Andaman Mangrove Biogeochemistry Research', client: 'UK NERC', location: 'Andaman Islands, India', region: 'India', sector: 'India Water & Marine', period: '2002–2006', scope: 'Nitrification, denitrification, methane and nitrous-oxide research, including water, air and sediment sampling in tidal mangrove creeks.' },
+      { title: 'Tsunami-Affected Andaman Water-Quality Assessment', client: 'Department of Science & Technology, Government of India', location: 'Andaman Islands, India', region: 'India', sector: 'India Water & Marine', period: '2005–2006', scope: 'Tidal observations, diurnal sampling, nutrient analysis and coastal-water biogeochemistry assessment.' },
+      { title: 'IAMWARM River-Basin & Irrigation Project', client: 'Government of Tamil Nadu / World Bank', location: 'Tamil Nadu, India', region: 'India', sector: 'India Water & Marine', period: '2008–2013', scope: 'Environmental monitoring and evaluation of tank-irrigation impacts on agriculture across Tamil Nadu river sub-basins.' },
+      { title: 'Chennai, Nagapattinam & Pondicherry Water Studies', client: 'MoEF / MoWR / World Bank', location: 'South India', region: 'India', sector: 'India Water & Marine', period: '2002–2008', scope: 'Waterways monitoring/database development, assessment of coastal backwater effects and drinking/irrigation water-quality characterisation.' },
+
+      // Oil & Gas / Petrochemical
+      { title: 'Borouge 3 Petrochemical Expansion', client: 'ADNOC / Borouge', location: 'Ruwais, Abu Dhabi, UAE', region: 'UAE', sector: 'Oil & Gas / Petrochemical', period: '2024', scope: 'EIA for world-scale polyethylene and polypropylene plant expansion within Ruwais Industrial Area.' },
+      { title: 'Habshan 5 Gas Processing Plant Operations EIA', client: 'ADNOC Gas Processing', location: 'Abu Dhabi, UAE', region: 'UAE', sector: 'Oil & Gas / Petrochemical', period: '2024', scope: 'Comprehensive operational EIA covering emissions, hazardous effluents, and regulatory EAD compliance.' },
+      { title: 'MERAM Pipelines (Ethane Recovery & Monetization)', client: 'ADNOC', location: 'Abu Dhabi, UAE', region: 'UAE', sector: 'Oil & Gas / Petrochemical', period: '2024', scope: 'Environmental Impact Assessment for major cross-country ethane transmission pipeline corridors.' },
+      { title: 'Umm Shaif Integrated Gas Cap Phase 1 Project', client: 'ADNOC Offshore / Worley', location: 'Offshore Abu Dhabi, UAE', region: 'UAE', sector: 'Oil & Gas / Petrochemical', period: '2024', scope: 'HSEIA screening, environmental risk framing, and offshore sour gas surface pressure boosting review.' },
+      { title: 'DAS Island Offshore Facility Modernization', client: 'ADNOC Offshore', location: 'DAS Island, UAE', region: 'UAE', sector: 'Oil & Gas / Petrochemical', period: '2024', scope: 'EIA and regulatory clearance for offshore oil and gas processing infrastructure and marine terminals.' },
+      { title: 'Combined Phase HSEIA for Offshore Fields', client: 'ADOC', location: 'Offshore Abu Dhabi, UAE', region: 'UAE', sector: 'Oil & Gas / Petrochemical', period: '2024–2025', scope: 'PHA reporting (HAZID, ENVID, OHID) for ongoing drilling and workover operations at AR/GA/Hail/Mubarraz fields.' },
+      { title: "TA'ZIZ Chemical Derivatives Park", client: 'ADNOC / ADQ', location: 'Ruwais, UAE', region: 'UAE', sector: 'Oil & Gas / Petrochemical', period: '2024', scope: 'Environmental and Social Impact Assessment (ESIA) for multi-billion-dollar industrial chemicals complex.' },
+      { title: 'Takreer Ruwais Interim Hazardous Waste Facility', client: 'Takreer / MGS', location: 'Abu Dhabi, UAE', region: 'UAE', sector: 'Oil & Gas / Petrochemical', period: '2014–2015', scope: 'Environmental decommissioning evaluation, soil remediation assessment, and site clearance.' },
+
+      // Civil & Utilities
+      { title: 'Al Soudah Tourism Development Master Plan', client: 'Al Soudah Development', location: 'Kingdom of Saudi Arabia', region: 'Bahrain & KSA', sector: 'Civil & Utilities', period: '2024–2027', scope: 'High-level environmental and sustainability audit for luxury mountain hospitality and tourism giga-project.' },
+      { title: 'Qatar Economic Zone 3 (Manateq) Infrastructure', client: 'HLG / Manateq', location: 'Qatar', region: 'Qatar', sector: 'Civil & Utilities', period: '2016', scope: 'CEMP, groundwater protection, and construction environmental monitoring for primary roads and utility networks.' },
+      { title: 'FIFA 2022 World Cup Readiness Infrastructure', client: 'Supreme Committee / Ashghal', location: 'Doha, Qatar', region: 'Qatar', sector: 'Civil & Utilities', period: '2016–2020', scope: 'CEMP preparation and surface/groundwater network environmental compliance for Fifth Precinct stadium works.' },
+      { title: 'Municipal Sewage Treatment Plants (Al Wakra, Al Barwa)', client: 'Multiple Municipal Clients', location: 'Qatar', region: 'Qatar', sector: 'Civil & Utilities', period: '2019–2021', scope: 'EIAs, odour modeling evaluation, effluent discharge standards, and regulatory licensing.' },
+      { title: 'Hassyan Clean Coal / Dual-Fuel Power Plant', client: 'DEWA / Harbin Electric', location: 'Dubai, UAE', region: 'UAE', sector: 'Civil & Utilities', period: '2017', scope: 'Environmental Management System (EMS) development, air quality, and marine thermal discharge review.' }
+    ];
+
+    const COMPETENCIES_DATA = [
+      {
+        shortLabel: 'Marine EIA',
+        title: 'Marine & Coastal Environmental Assessment',
+        score: 99,
+        detail: 'Comprehensive coastal, port, harbour, dredging, reclamation, and marine ecological impact assessments across GCC and Indian waters.'
+      },
+      {
+        shortLabel: 'Permitting/NOCs',
+        title: 'Environmental Permitting, Approvals & NOCs',
+        score: 98,
+        detail: 'Securing statutory environmental permits, CRZ clearances, and milestone NOCs from EAD, MME, Ashghal, and MoEF.'
+      },
+      {
+        shortLabel: 'EIA/PER Lead',
+        title: 'EIA / PER Technical Leadership',
+        score: 98,
+        detail: 'End-to-end technical leadership for Preliminary Environmental Reviews (PER) and full-scale EIA/ESIA programmes.'
+      },
+      {
+        shortLabel: 'Baselines',
+        title: 'Environmental Baseline Surveys & Monitoring',
+        score: 97,
+        detail: 'Marine water, sediment, benthic/coral ecology, turbidity, and diurnal biogeochemical baseline investigations.'
+      },
+      {
+        shortLabel: 'CEMP/HSEIA',
+        title: 'CEMP / HSEIA / Environmental Risk Review',
+        score: 96,
+        detail: 'Construction Environmental Management Plans, offshore HSEIA screening, and PHA workshops (HAZID, ENVID, OHID).'
+      },
+      {
+        shortLabel: 'Authority Liaison',
+        title: 'Authority Liaison & Consultant Direction',
+        score: 97,
+        detail: 'Directing specialist sub-consultants and aligning multidisciplinary engineering designs with regulatory authorities.'
+      },
+      {
+        shortLabel: 'Tender Specs',
+        title: 'Tender Specifications & Design Requirements',
+        score: 95,
+        detail: 'Framing technical environmental tender specifications and integrating mitigation controls into engineering designs.'
+      },
+      {
+        shortLabel: 'Audits/Support',
+        title: 'Compliance Audits & Construction Support',
+        score: 96,
+        detail: 'Auditing contractor method statements, dredging performance, and on-site CEMP construction compliance.'
+      },
+      {
+        shortLabel: 'PM & Budgets',
+        title: 'Project Management, Proposals & Budgeting',
+        score: 94,
+        detail: 'Managing multidisciplinary environmental programmes, schedules, cost estimates, technical proposals, and deliverables.'
+      }
+    ];
+
+    const BRIEFING_CHAPTERS = [
+      {
+        code: '01',
+        label: 'Executive Profile',
+        heading: '01 // Executive Telemetry & Profile',
+        text: 'Dr. Nirmal Rajkumar is a Senior Environment Expert in Marine and Coastal Engineering with over 25 years of international experience across the UAE, Qatar, Bahrain, Saudi Arabia, and India. Holding a Ph.D. in Marine Biogeochemistry, he specializes in marine EIAs, statutory permitting, hydrodynamic and sediment-plume evaluations, CEMP, HSEIA, and regulatory approvals with EAD and regional GCC authorities.'
+      },
+      {
+        code: '02',
+        label: 'Maritime & Ports',
+        heading: '02 // Abu Dhabi Ports & Maritime Leadership',
+        text: 'Currently serving as Senior Design Engineer Environmental for Abu Dhabi Ports and KEO International Consultants, Dr. Rajkumar leads statutory NOCs and EIA/PER programmes for landmark developments including Khalifa Port Expansion 2030, Fujairah Terminal 2, Fteysi Island North ecological island creation, and Sir Bani Yas Cruise Jetty.'
+      },
+      {
+        code: '03',
+        label: 'GCC Consultancy',
+        heading: '03 // Regional GCC Consultancy Track Record',
+        text: 'Across senior leadership roles at Bureau Veritas, Artelia, Qatar Design Consortium, and Green Crescent, he delivered complex marine, reclamation, and infrastructure permits across the UAE, Qatar, Bahrain, and Saudi Arabia, including Qetaifan Island North, South Al Mussafah Capital Dredging, Saadiyat Island, and FIFA 2022 World Cup readiness infrastructure.'
+      },
+      {
+        code: '04',
+        label: 'Energy & Offshore',
+        heading: '04 // Oil, Gas & Petrochemical HSEIA Portfolio',
+        text: 'Dr. Rajkumar brings deep offshore and industrial environmental governance across major ADNOC and ADOC assets, directing ESIAs and HSEIAs for Borouge 3 Petrochemical Expansion, Habshan 5, MERAM Pipelines, Umm Shaif Integrated Gas Cap, DAS Island Modernization, and TA ZIZ Chemical Derivatives Park.'
+      },
+      {
+        code: '05',
+        label: 'Indian Marine Research',
+        heading: '05 // Indian Coastal Infrastructure & Biogeochemistry',
+        text: 'Earlier in his career at SMEC India and the Institute for Ocean Management at Anna University, he secured MoEF and CRZ clearances for World Bank and ADB funded fishing harbours, nuclear and thermal outfall assessments, and led UK NERC mangrove biogeochemistry research in the Andaman Islands.'
+      },
+      {
+        code: '06',
+        label: 'Academic Credentials',
+        heading: '06 // Academic Credentials & Biogeochemistry',
+        text: 'Dr. Rajkumar earned his Ph.D. in Marine Biogeochemistry from Anna University, Chennai in 2008, following his Master of Science degree in 1998 and Bachelor of Science degree in 1995, grounding 25+ years of coastal and offshore environmental leadership in rigorous marine science.'
+      }
+    ];
+
+    // =========================================================================
+    // 2. PROCEDURAL WEB AUDIO API BIO-SONAR & UI SOUND ENGINE
+    // =========================================================================
+
+    let sonarAudioEnabled = true;
+    let audioCtx = null;
+
+    function getAudioCtx() {
+      if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new Ctx();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume().catch(() => {});
+      }
+      return audioCtx;
+    }
+
+    function toggleSonarAudio() {
+      sonarAudioEnabled = !sonarAudioEnabled;
+      const dot = document.getElementById('sonarAudioDot');
+      const txt = document.getElementById('sonarAudioText');
+      if (sonarAudioEnabled) {
+        dot.className = 'w-2 h-2 rounded-full bg-holo-cyan';
+        txt.textContent = 'SONAR: ON';
+        playSonarPing();
+      } else {
+        dot.className = 'w-2 h-2 rounded-full bg-slate-500';
+        txt.textContent = 'SONAR: OFF';
+      }
+    }
+
+    function playUiClick() {
+      if (!sonarAudioEnabled) return;
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      try {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(920, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(420, ctx.currentTime + 0.045);
+        gain.gain.setValueAtTime(0.04, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.045);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.05);
+      } catch (e) {}
+    }
+
+    function playSonarPing() {
+      if (!sonarAudioEnabled) return;
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      try {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(1320, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(660, ctx.currentTime + 0.28);
+        gain.gain.setValueAtTime(0.065, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0008, ctx.currentTime + 0.3);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.31);
+      } catch (e) {}
+    }
+
+    // =========================================================================
+    // 3. INTERACTIVE 3D BATHYMETRIC GLOBE & GEOSPATIAL TELEMETRY SYNC
+    // =========================================================================
+
+    const GLOBE_BEACONS = [
+      { id: 'ALL', label: 'ALL SECTORS', lat: 24.45, lon: 54.37, depth: '-42.0m', coords: '24.4539° N, 54.3773° E', regs: 'EAD • MME/ASHGHAL • MOEF/CRZ • WORLD BANK' },
+      { id: 'UAE', label: 'ABU DHABI / UAE', lat: 24.45, lon: 54.37, depth: '-18.5m', coords: '24.4539° N, 54.3773° E', regs: 'EAD • ABU DHABI PORTS • ADNOC • DEWA' },
+      { id: 'Qatar', label: 'DOHA / QATAR', lat: 25.28, lon: 51.53, depth: '-14.2m', coords: '25.2854° N, 51.5310° E', regs: 'MME • ASHGHAL • QATAR PETROLEUM' },
+      { id: 'India', label: 'CHENNAI & ANDAMAN', lat: 13.08, lon: 80.27, depth: '-68.0m', coords: '13.0827° N, 80.2707° E', regs: 'MOEF / CRZ • WORLD BANK • ADB • UK NERC' },
+      { id: 'Bahrain & KSA', label: 'BAHRAIN & KSA', lat: 26.22, lon: 50.58, depth: '-12.0m', coords: '26.2285° N, 50.5860° E', regs: 'SCE BAHRAIN • AL SOUDAH DEVELOPMENT' }
+    ];
+
+    let activeGlobalRegion = 'ALL';
+    let globeRotY = -0.92;
+    let targetGlobeRotY = -0.92;
+    let globeTiltX = 0.32;
+    let isDraggingGlobe = false;
+    let dragMoved = false;
+    let lastDragX = 0;
+    let lastDragY = 0;
+    let projectedBeaconsScreen = [];
+
+    function filterByAuthority(keyword, region) {
+      playSonarPing();
+      setGlobalRegion(region || 'ALL');
+      const searchInput = document.getElementById('matrixSearchInput');
+      if (searchInput) {
+        searchInput.value = keyword;
+      }
+      renderProjectMatrix();
+      document.getElementById('project-matrix')?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function setGlobalRegion(region) {
+      activeGlobalRegion = region;
+      playSonarPing();
+
+      // Update top HUD region pills
+      document.querySelectorAll('.global-region-btn').forEach(btn => {
+        const active = btn.getAttribute('data-global-region') === region;
+        btn.className = active
+          ? 'global-region-btn px-2.5 py-1 rounded-lg font-mono text-[11px] font-bold bg-holo-cyan text-abyss-950 transition-all cursor-pointer'
+          : 'global-region-btn px-2.5 py-1 rounded-lg font-mono text-[11px] font-medium bg-abyss-900/85 text-slate-300 hover:text-holo-cyan border border-white/10 transition-all cursor-pointer';
+      });
+
+      // Update globe readout & target longitude rotation
+      const beacon = GLOBE_BEACONS.find(b => b.id === region) || GLOBE_BEACONS[0];
+      targetGlobeRotY = -(beacon.lon * Math.PI) / 180;
+      document.getElementById('hudCoords').textContent = `${beacon.coords} | DEPTH: ${beacon.depth}`;
+      document.getElementById('globeLockStatus').textContent = region === 'ALL' ? 'GLOBAL ORBIT' : `LOCK: ${region.toUpperCase()}`;
+      document.getElementById('beaconNameReadout').textContent = beacon.label;
+      document.getElementById('beaconDepthReadout').textContent = `DEPTH: ${beacon.depth}`;
+      document.getElementById('beaconRegReadout').textContent = `REGULATORS: ${beacon.regs}`;
+
+      renderGlobeBeaconBar();
+
+      // Sync project matrix region dropdown & career trajectory
+      const regSelect = document.getElementById('matrixRegionSelect');
+      if (regSelect) regSelect.value = region;
+      renderTrajectory();
+      renderProjectMatrix();
+    }
+
+    function renderGlobeBeaconBar() {
+      const bar = document.getElementById('globeBeaconBar');
+      if (!bar) return;
+      bar.innerHTML = GLOBE_BEACONS.map(b => {
+        const active = b.id === activeGlobalRegion;
+        return `
+          <button type="button" onclick="setGlobalRegion('${b.id}')" class="px-2 py-1 rounded-md border transition-all cursor-pointer ${
+            active
+              ? 'bg-holo-cyan/20 text-holo-cyan border-holo-cyan font-bold'
+              : 'bg-abyss-950/90 text-slate-400 border-white/10 hover:text-white'
+          }">
+            ${b.id === 'ALL' ? 'ALL' : b.id.toUpperCase()}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function initBathymetricGlobe() {
+      const canvas = document.getElementById('bathymetricGlobeCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      function resizeGlobe() {
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = Math.max(1, Math.floor(rect.width * dpr));
+        canvas.height = Math.max(1, Math.floor(rect.height * dpr));
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      resizeGlobe();
+      window.addEventListener('resize', resizeGlobe);
+
+      canvas.addEventListener('pointerdown', e => {
+        isDraggingGlobe = true;
+        dragMoved = false;
+        lastDragX = e.clientX;
+        lastDragY = e.clientY;
+      });
+      window.addEventListener('pointermove', e => {
+        if (!isDraggingGlobe) return;
+        const dx = e.clientX - lastDragX;
+        const dy = e.clientY - lastDragY;
+        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) dragMoved = true;
+        lastDragX = e.clientX;
+        lastDragY = e.clientY;
+        globeRotY += dx * 0.01;
+        targetGlobeRotY = globeRotY;
+        globeTiltX = Math.max(-0.65, Math.min(0.85, globeTiltX + dy * 0.008));
+      });
+      window.addEventListener('pointerup', () => {
+        isDraggingGlobe = false;
+      });
+      canvas.addEventListener('click', e => {
+        if (dragMoved) return;
+        const rect = canvas.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const clickY = e.clientY - rect.top;
+        for (const pb of projectedBeaconsScreen) {
+          const dist = Math.hypot(clickX - pb.x, clickY - pb.y);
+          if (dist <= 18) {
+            setGlobalRegion(pb.id);
+            break;
+          }
+        }
+      });
+
+      function projectPoint(latDeg, lonDeg, radius, rotY, tiltX) {
+        const lat = (latDeg * Math.PI) / 180;
+        const lon = (lonDeg * Math.PI) / 180 + rotY;
+        const x0 = radius * Math.cos(lat) * Math.sin(lon);
+        const y0 = -radius * Math.sin(lat);
+        const z0 = radius * Math.cos(lat) * Math.cos(lon);
+
+        const y1 = y0 * Math.cos(tiltX) - z0 * Math.sin(tiltX);
+        const z1 = y0 * Math.sin(tiltX) + z0 * Math.cos(tiltX);
+        return { x: x0, y: y1, z: z1 };
+      }
+
+      function animateGlobe() {
+        const w = canvas.getBoundingClientRect().width;
+        const h = canvas.getBoundingClientRect().height;
+        const cx = w / 2;
+        const cy = h / 2 - 10;
+        const radius = Math.min(w, h) * 0.34;
+        const tiltX = globeTiltX;
+
+        if (!isDraggingGlobe) {
+          if (activeGlobalRegion === 'ALL') {
+            globeRotY += 0.004;
+          } else {
+            globeRotY += (targetGlobeRotY - globeRotY) * 0.08;
+          }
+        }
+
+        ctx.clearRect(0, 0, w, h);
+
+        // Outer bathymetric halo
+        const grad = ctx.createRadialGradient(cx, cy, radius * 0.2, cx, cy, radius * 1.25);
+        grad.addColorStop(0, 'rgba(0, 187, 249, 0.14)');
+        grad.addColorStop(0.7, 'rgba(0, 245, 212, 0.05)');
+        grad.addColorStop(1, 'rgba(2, 6, 13, 0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius * 1.25, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Globe rim
+        ctx.strokeStyle = 'rgba(0, 245, 212, 0.38)';
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Latitude rings
+        ctx.strokeStyle = 'rgba(0, 187, 249, 0.18)';
+        ctx.lineWidth = 0.8;
+        for (let lat = -60; lat <= 60; lat += 30) {
+          ctx.beginPath();
+          for (let lon = -180; lon <= 180; lon += 10) {
+            const p = projectPoint(lat, lon, radius, globeRotY, tiltX);
+            if (lon === -180) ctx.moveTo(cx + p.x, cy + p.y);
+            else ctx.lineTo(cx + p.x, cy + p.y);
+          }
+          ctx.stroke();
+        }
+
+        // Longitude meridians
+        for (let lon = -180; lon < 180; lon += 30) {
+          ctx.beginPath();
+          for (let lat = -90; lat <= 90; lat += 10) {
+            const p = projectPoint(lat, lon, radius, globeRotY, tiltX);
+            if (lat === -90) ctx.moveTo(cx + p.x, cy + p.y);
+            else ctx.lineTo(cx + p.x, cy + p.y);
+          }
+          ctx.stroke();
+        }
+
+        // Plot Maritime Sector Beacons
+        const pulse = (Math.sin(Date.now() * 0.005) + 1) * 0.5;
+        projectedBeaconsScreen = [];
+        GLOBE_BEACONS.slice(1).forEach(b => {
+          const p = projectPoint(b.lat, b.lon, radius, globeRotY, tiltX);
+          if (p.z > -radius * 0.15) {
+            const isSelected = activeGlobalRegion === b.id;
+            const bx = cx + p.x;
+            const by = cy + p.y;
+            projectedBeaconsScreen.push({ id: b.id, x: bx, y: by });
+
+            ctx.strokeStyle = isSelected ? 'rgba(255, 183, 3, 0.7)' : 'rgba(0, 245, 212, 0.5)';
+            ctx.lineWidth = 1.2;
+            ctx.beginPath();
+            ctx.arc(bx, by, (isSelected ? 8 : 5) + pulse * 5, 0, Math.PI * 2);
+            ctx.stroke();
+
+            ctx.fillStyle = isSelected ? '#ffb703' : '#00f5d4';
+            ctx.beginPath();
+            ctx.arc(bx, by, isSelected ? 4 : 3, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.font = '600 9px "JetBrains Mono", monospace';
+            ctx.fillStyle = isSelected ? '#ffb703' : 'rgba(226, 232, 240, 0.85)';
+            ctx.fillText(b.id.toUpperCase(), bx + 8, by + 3);
+          }
+        });
+
+        requestAnimationFrame(animateGlobe);
+      }
+      animateGlobe();
+    }
+
+    // =========================================================================
+    // 4. DEEP-SEA AMBIENT SONAR BACKGROUND CANVAS
+    // =========================================================================
+
+    function initSonarCanvas() {
+      const canvas = document.getElementById('sonarCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let w = 0;
+      let h = 0;
+
+      const particles = Array.from({ length: 42 }, () => ({
+        x: Math.random(),
+        y: Math.random(),
+        r: 0.8 + Math.random() * 1.8,
+        vx: (Math.random() - 0.5) * 0.00025,
+        vy: -0.00015 - Math.random() * 0.00025
+      }));
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      let phase = 0;
+      function draw() {
+        phase += 0.008;
+        ctx.clearRect(0, 0, w, h);
+
+        // Subtle bathymetric contour waves
+        for (let band = 0; band < 3; band++) {
+          ctx.beginPath();
+          ctx.strokeStyle = band === 0 ? 'rgba(0, 245, 212, 0.05)' : 'rgba(0, 187, 249, 0.04)';
+          ctx.lineWidth = 1;
+          const baseY = h * (0.28 + band * 0.26);
+          for (let x = 0; x <= w; x += 28) {
+            const y = baseY + Math.sin(x * 0.004 + phase + band * 1.7) * 26;
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        }
+
+        // Bioluminescent plankton / sonar particles
+        particles.forEach(p => {
+          p.x = (p.x + p.vx + 1) % 1;
+          p.y = (p.y + p.vy + 1) % 1;
+          ctx.fillStyle = 'rgba(0, 245, 212, 0.28)';
+          ctx.beginPath();
+          ctx.arc(p.x * w, p.y * h, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        requestAnimationFrame(draw);
+      }
+      draw();
+    }
+
+    // =========================================================================
+    // 6. AI VOICE SYNTHESIS / HOLOGRAPHIC BRIEFING DECK
+    // =========================================================================
+
+    let currentChapterIdx = 0;
+    let isSpeaking = false;
+    let isBriefExpanded = false;
+    let speechRate = 1.0;
+    let availableVoices = [];
+
+    function toggleBriefDeckExpand(forceState) {
+      playUiClick();
+      isBriefExpanded = typeof forceState === 'boolean' ? forceState : !isBriefExpanded;
+      const body = document.getElementById('briefDeckBody');
+      const btn = document.getElementById('toggleBriefExpandBtn');
+      if (isBriefExpanded) {
+        body.classList.remove('hidden');
+        btn.textContent = 'COLLAPSE DECK ▴';
+      } else {
+        body.classList.add('hidden');
+        btn.textContent = 'EXPAND DECK ▾';
+      }
+    }
+
+    function populateVoices() {
+      if (!('speechSynthesis' in window)) return;
+      availableVoices = window.speechSynthesis.getVoices() || [];
+      const select = document.getElementById('voiceSelect');
+      if (!select) return;
+      const currentVal = select.value;
+      const englishVoices = availableVoices.filter(v => v.lang && v.lang.toLowerCase().startsWith('en'));
+      const list = englishVoices.length ? englishVoices : availableVoices;
+      select.innerHTML = `<option value="">Default Neural Voice</option>` +
+        list.map((v, i) => `<option value="${v.name}">${v.name} (${v.lang})</option>`).join('');
+      if (currentVal) select.value = currentVal;
+    }
+
+    if ('speechSynthesis' in window) {
+      populateVoices();
+      window.speechSynthesis.onvoiceschanged = populateVoices;
+    }
+
+    function onVoiceChange() {
+      playUiClick();
+      if (isSpeaking) speakChapter(currentChapterIdx);
+    }
+
+    function cycleSpeechRate() {
+      playUiClick();
+      const rates = [1.0, 1.25, 1.5, 0.9];
+      const nextIdx = (rates.indexOf(speechRate) + 1) % rates.length;
+      speechRate = rates[nextIdx];
+      const btn = document.getElementById('speedToggleBtn');
+      if (btn) btn.textContent = `SPEED: ${speechRate.toFixed(2).replace(/\.00$/, '.0')}x`;
+      if (isSpeaking) speakChapter(currentChapterIdx);
+    }
+
+    function syncBriefUI(charIndex = -1) {
+      const ch = BRIEFING_CHAPTERS[currentChapterIdx];
+      document.getElementById('chapterIndexHud').textContent = `CH ${ch.code} / 06`;
+      document.getElementById('briefChapterHeading').textContent = ch.heading;
+      const compactLabel = document.getElementById('compactChapterLabel');
+      if (compactLabel) compactLabel.textContent = `${ch.code} // ${ch.label}`;
+
+      const transcriptEl = document.getElementById('briefTranscriptText');
+      if (transcriptEl) {
+        if (charIndex >= 0 && isSpeaking) {
+          const text = ch.text;
+          let start = Math.min(charIndex, text.length);
+          while (start > 0 && !/\s/.test(text[start - 1])) start--;
+          let end = Math.min(charIndex, text.length);
+          while (end < text.length && !/\s/.test(text[end])) end++;
+          const before = escapeHtml(text.slice(0, start));
+          const word = escapeHtml(text.slice(start, end));
+          const after = escapeHtml(text.slice(end));
+          transcriptEl.innerHTML = `${before}<span class="px-1 rounded bg-holo-cyan/25 text-holo-cyan font-semibold">${word}</span>${after}`;
+        } else {
+          transcriptEl.textContent = ch.text;
+        }
+      }
+
+      const badge = document.getElementById('briefStatusBadge');
+      const playText = document.getElementById('briefPlayText');
+      const navLabel = document.getElementById('navAudioLabel');
+
+      if (isSpeaking) {
+        badge.textContent = 'TRANSMITTING';
+        badge.className = 'px-2.5 py-0.5 rounded-full font-mono text-[11px] font-semibold bg-holo-cyan/20 text-holo-cyan border border-holo-cyan/50';
+        playText.textContent = 'PAUSE BRIEF';
+        if (navLabel) navLabel.textContent = 'PAUSE BRIEF';
+      } else {
+        badge.textContent = 'STANDBY';
+        badge.className = 'px-2.5 py-0.5 rounded-full font-mono text-[11px] font-semibold bg-abyss-950 text-holo-azure border border-holo-azure/35';
+        playText.textContent = 'PLAY BRIEF';
+        if (navLabel) navLabel.textContent = 'VOICE BRIEF';
+      }
+
+      const grid = document.getElementById('briefChapterGrid');
+      if (grid) {
+        grid.innerHTML = BRIEFING_CHAPTERS.map((item, idx) => {
+          const active = idx === currentChapterIdx;
+          return `
+            <button type="button" onclick="selectBriefChapter(${idx})" class="p-2.5 rounded-xl text-left border transition-all cursor-pointer ${
+              active
+                ? 'bg-holo-cyan/20 border-holo-cyan text-white'
+                : 'bg-abyss-950/90 border-white/10 text-slate-400 hover:border-holo-cyan/40 hover:text-slate-200'
+            }">
+              <div class="font-mono text-[10px] ${active ? 'text-holo-cyan font-bold' : 'text-slate-500'}">CH ${item.code}</div>
+              <div class="font-sans text-xs font-semibold truncate mt-0.5">${item.label}</div>
+            </button>
+          `;
+        }).join('');
+      }
+    }
+
+    function selectBriefChapter(idx) {
+      playUiClick();
+      currentChapterIdx = idx;
+      toggleBriefDeckExpand(true);
+      speakChapter(idx);
+    }
+
+    function speakChapter(idx) {
+      currentChapterIdx = idx;
+      if (!('speechSynthesis' in window)) {
+        syncBriefUI();
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const ch = BRIEFING_CHAPTERS[idx];
+      const utterance = new SpeechSynthesisUtterance(ch.text);
+      utterance.rate = speechRate;
+
+      const selectedVoiceName = document.getElementById('voiceSelect')?.value;
+      if (selectedVoiceName && availableVoices.length) {
+        const found = availableVoices.find(v => v.name === selectedVoiceName);
+        if (found) utterance.voice = found;
+      }
+
+      utterance.onstart = () => {
+        isSpeaking = true;
+        syncBriefUI(0);
+      };
+      utterance.onboundary = (event) => {
+        if (typeof event.charIndex === 'number') {
+          syncBriefUI(event.charIndex);
+        }
+      };
+      utterance.onend = () => {
+        isSpeaking = false;
+        syncBriefUI(-1);
+      };
+      utterance.onerror = () => {
+        isSpeaking = false;
+        syncBriefUI(-1);
+      };
+
+      isSpeaking = true;
+      syncBriefUI(0);
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function toggleVoiceBrief() {
+      playUiClick();
+      if (!('speechSynthesis' in window)) return;
+      if (isSpeaking) {
+        window.speechSynthesis.cancel();
+        isSpeaking = false;
+        syncBriefUI();
+      } else {
+        toggleBriefDeckExpand(true);
+        speakChapter(currentChapterIdx);
+      }
+    }
+
+    function stopVoiceBrief() {
+      playUiClick();
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      isSpeaking = false;
+      syncBriefUI(-1);
+    }
+
+    function initSpectrumCanvas() {
+      const canvas = document.getElementById('spectrumCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      function resize() {
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = Math.max(1, Math.floor(rect.width * dpr));
+        canvas.height = Math.max(1, Math.floor(rect.height * dpr));
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      let t = 0;
+      function draw() {
+        t += 0.14;
+        const w = canvas.getBoundingClientRect().width;
+        const h = canvas.getBoundingClientRect().height;
+        ctx.clearRect(0, 0, w, h);
+
+        const bars = 28;
+        const gap = 3;
+        const barW = Math.max(2, (w - gap * (bars - 1)) / bars);
+
+        for (let i = 0; i < bars; i++) {
+          const amp = isSpeaking
+            ? 0.25 + 0.72 * Math.abs(Math.sin(t + i * 0.45) * Math.cos(t * 0.6 - i * 0.22))
+            : 0.12 + 0.06 * Math.sin(t * 0.3 + i * 0.4);
+          const barH = Math.max(4, amp * (h - 6));
+          const x = i * (barW + gap);
+          const y = h - barH;
+          ctx.fillStyle = isSpeaking ? (i % 3 === 0 ? '#ffb703' : '#00f5d4') : 'rgba(0, 187, 249, 0.35)';
+          ctx.fillRect(x, y, barW, barH);
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    }
+
+    // =========================================================================
+    // 7. INTERACTIVE CAREER TRAJECTORY TIMELINE
+    // =========================================================================
+
+    let selectedRoleId = ROLES_DATA[0].id;
+
+    function selectRoleNode(roleId) {
+      playUiClick();
+      selectedRoleId = roleId;
+      renderTrajectory();
+    }
+
+    function renderTrajectory() {
+      const filteredRoles = activeGlobalRegion === 'ALL'
+        ? ROLES_DATA
+        : ROLES_DATA.filter(r => r.region === activeGlobalRegion);
+
+      const rolesToUse = filteredRoles.length ? filteredRoles : ROLES_DATA;
+      if (!rolesToUse.some(r => r.id === selectedRoleId)) {
+        selectedRoleId = rolesToUse[0].id;
+      }
+
+      const readout = document.getElementById('trajectoryFilterReadout');
+      if (readout) {
+        readout.textContent = activeGlobalRegion === 'ALL'
+          ? `ACTIVE SECTOR: ALL REGIONS (${rolesToUse.length} ROLES)`
+          : `ACTIVE SECTOR: ${activeGlobalRegion.toUpperCase()} (${rolesToUse.length} ROLES)`;
+      }
+
+      const nodesEl = document.getElementById('trajectoryNodes');
+      if (nodesEl) {
+        nodesEl.innerHTML = rolesToUse.map(role => {
+          const active = role.id === selectedRoleId;
+          return `
+            <button type="button" onclick="selectRoleNode('${role.id}')" class="p-3.5 rounded-2xl text-left border transition-all cursor-pointer ${
+              active
+                ? 'bg-holo-cyan/15 border-holo-cyan shadow-[0_0_24px_rgba(0,245,212,0.18)]'
+                : 'bg-abyss-950/90 border-white/10 hover:border-holo-cyan/40'
+            }">
+              <div class="font-mono text-[10px] font-bold ${active ? 'text-holo-amber' : 'text-holo-cyan'}">${role.shortYear}</div>
+              <div class="font-display text-xs font-bold text-white mt-1 line-clamp-2">${role.org}</div>
+              <div class="font-mono text-[10px] text-slate-400 mt-1 truncate">${role.location}</div>
+            </button>
+          `;
+        }).join('');
+      }
+
+      const currentRole = rolesToUse.find(r => r.id === selectedRoleId) || rolesToUse[0];
+      const logEl = document.getElementById('trajectoryMissionLog');
+      if (logEl && currentRole) {
+        logEl.innerHTML = `
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b border-white/10 pb-4">
+            <div>
+              <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+                <span class="px-2.5 py-0.5 rounded-full bg-holo-cyan/20 text-holo-cyan border border-holo-cyan/40 font-bold">${currentRole.period}</span>
+                <span class="text-holo-amber font-semibold">${currentRole.location}</span>
+              </div>
+              <h3 class="font-display text-xl sm:text-2xl font-extrabold text-white mt-2">${currentRole.title}</h3>
+              <p class="font-mono text-xs sm:text-sm text-holo-azure font-semibold mt-0.5">${currentRole.org}</p>
+            </div>
+          </div>
+          <p class="text-sm sm:text-base text-slate-200 leading-relaxed mt-4">${currentRole.summary}</p>
+          <ul class="mt-4 space-y-2.5">
+            ${currentRole.bullets.map(b => `
+              <li class="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
+                <span class="text-holo-cyan font-mono font-bold mt-0.5">▹</span>
+                <span>${b}</span>
+              </li>
+            `).join('')}
+          </ul>
+        `;
+      }
+    }
+
+    // =========================================================================
+    // 8. INTERACTIVE GEOSPATIAL & SECTOR PROJECT MATRIX (COLLAPSED BY DEFAULT)
+    // =========================================================================
+
+    let showAllProjects = false;
+
+    function toggleShowAllProjects() {
+      playUiClick();
+      showAllProjects = !showAllProjects;
+      renderProjectMatrix();
+    }
+
+    function setMatrixSector(sector) {
+      playUiClick();
+      const select = document.getElementById('matrixSectorSelect');
+      if (select) select.value = sector;
+
+      document.querySelectorAll('.matrix-sector-pill').forEach(btn => {
+        const active = btn.getAttribute('data-matrix-sector') === sector;
+        btn.className = active
+          ? 'matrix-sector-pill px-3 py-1.5 rounded-lg bg-holo-cyan text-abyss-950 font-bold cursor-pointer'
+          : 'matrix-sector-pill px-3 py-1.5 rounded-lg bg-abyss-950 text-slate-300 border border-white/10 hover:border-holo-cyan/40 cursor-pointer';
+      });
+
+      renderProjectMatrix();
+    }
+
+    function onMatrixRegionDropdown() {
+      playUiClick();
+      const region = document.getElementById('matrixRegionSelect')?.value || 'ALL';
+      setGlobalRegion(region);
+    }
+
+    function resetMatrixFilters() {
+      playUiClick();
+      const searchInput = document.getElementById('matrixSearchInput');
+      if (searchInput) searchInput.value = '';
+      showAllProjects = false;
+      setMatrixSector('ALL');
+      setGlobalRegion('ALL');
+    }
+
+    function renderProjectMatrix() {
+      const query = (document.getElementById('matrixSearchInput')?.value || '').trim().toLowerCase();
+      const sector = document.getElementById('matrixSectorSelect')?.value || 'ALL';
+      const region = document.getElementById('matrixRegionSelect')?.value || 'ALL';
+
+      // Sync sector pill styles
+      document.querySelectorAll('.matrix-sector-pill').forEach(btn => {
+        const active = btn.getAttribute('data-matrix-sector') === sector;
+        btn.className = active
+          ? 'matrix-sector-pill px-3 py-1.5 rounded-lg bg-holo-cyan text-abyss-950 font-bold cursor-pointer'
+          : 'matrix-sector-pill px-3 py-1.5 rounded-lg bg-abyss-950 text-slate-300 border border-white/10 hover:border-holo-cyan/40 cursor-pointer';
+      });
+
+      const isFiltering = query.length > 0 || sector !== 'ALL' || region !== 'ALL';
+
+      const matched = PROJECTS_DATA.map((p, idx) => ({ ...p, originalIdx: idx })).filter(p => {
+        const matchesSector = sector === 'ALL' || p.sector === sector;
+        const matchesRegion = region === 'ALL' || p.region === region;
+        const matchesQuery = !query ||
+          p.title.toLowerCase().includes(query) ||
+          p.client.toLowerCase().includes(query) ||
+          p.location.toLowerCase().includes(query) ||
+          p.sector.toLowerCase().includes(query) ||
+          p.scope.toLowerCase().includes(query);
+        return matchesSector && matchesRegion && matchesQuery;
+      });
+
+      const visibleList = (isFiltering || showAllProjects) ? matched : matched.slice(0, 6);
+
+      const counterEl = document.getElementById('matrixCounter');
+      if (counterEl) {
+        counterEl.textContent = `DISPLAYING ${visibleList.length} OF ${matched.length} MISSIONS (${PROJECTS_DATA.length} TOTAL)`;
+      }
+
+      const grid = document.getElementById('projectMatrixGrid');
+      if (grid) {
+        if (!visibleList.length) {
+          grid.innerHTML = `
+            <div class="col-span-full holo-card rounded-3xl p-8 text-center space-y-3">
+              <div class="font-mono text-sm text-holo-amber">NO MATCHING MISSIONS IN CURRENT SECTOR TELEMETRY</div>
+              <button type="button" onclick="resetMatrixFilters()" class="px-4 py-2 rounded-xl bg-holo-cyan text-abyss-950 font-mono text-xs font-bold cursor-pointer">
+                RESET ALL FILTERS
+              </button>
+            </div>
+          `;
+        } else {
+          grid.innerHTML = visibleList.map(p => `
+            <article onclick="openProjectModal(${p.originalIdx})" class="holo-card rounded-2xl p-5 flex flex-col justify-between gap-4 cursor-pointer group">
+              <div class="space-y-2.5">
+                <div class="flex items-center justify-between gap-2 font-mono text-[10px]">
+                  <span class="px-2.5 py-0.5 rounded-full bg-holo-cyan/15 text-holo-cyan border border-holo-cyan/30 font-semibold truncate">${p.sector}</span>
+                  <span class="text-holo-amber font-bold shrink-0">${p.period}</span>
+                </div>
+                <h3 class="font-display text-sm sm:text-base font-bold text-white group-hover:text-holo-cyan transition-colors leading-snug">
+                  ${p.title}
+                </h3>
+                <p class="text-xs text-slate-300 line-clamp-2 leading-relaxed">${p.scope}</p>
+              </div>
+              <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-2 font-mono text-[11px]">
+                <span class="text-holo-azure truncate">${p.client}</span>
+                <span class="text-slate-400 shrink-0">${p.location}</span>
+              </div>
+            </article>
+          `).join('');
+        }
+      }
+
+      const moreWrapper = document.getElementById('matrixShowMoreWrapper');
+      if (moreWrapper) {
+        if (!isFiltering && matched.length > 6) {
+          moreWrapper.innerHTML = `
+            <button type="button" onclick="toggleShowAllProjects()" class="px-5 py-2.5 rounded-xl bg-holo-cyan/15 hover:bg-holo-cyan/25 text-holo-cyan border border-holo-cyan/40 font-mono text-xs font-bold transition-all cursor-pointer">
+              ${showAllProjects ? 'SHOW TOP 6 FLAGSHIP MISSIONS ▴' : `VIEW ALL ${matched.length} MISSIONS ▾`}
+            </button>
+          `;
+        } else {
+          moreWrapper.innerHTML = '';
+        }
+      }
+    }
+
+    function openProjectModal(idx) {
+      playUiClick();
+      const p = PROJECTS_DATA[idx];
+      if (!p) return;
+      document.getElementById('modalProjectSector').textContent = p.sector;
+      document.getElementById('modalProjectPeriod').textContent = p.period;
+      document.getElementById('modalProjectTitle').textContent = p.title;
+      document.getElementById('modalProjectClient').textContent = p.client;
+      document.getElementById('modalProjectLocation').textContent = p.location;
+      document.getElementById('modalProjectScope').textContent = p.scope;
+
+      const modal = document.getElementById('projectModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeProjectModal() {
+      playUiClick();
+      const modal = document.getElementById('projectModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // =========================================================================
+    // 9. CORE COMPETENCIES HOLOGRAPHIC RADAR CHART & MODULES
+    // =========================================================================
+
+    let activeCompetencyIdx = 0;
+
+    function selectCompetencyNode(idx) {
+      playUiClick();
+      activeCompetencyIdx = idx;
+      renderCompetencyRadar();
+      renderCompetencyModules();
+    }
+
+    function renderCompetencyRadar() {
+      const svg = document.getElementById('competencyRadarSvg');
+      if (!svg) return;
+      const cx = 190;
+      const cy = 190;
+      const maxR = 122;
+      const count = COMPETENCIES_DATA.length;
+
+      let ringsSvg = '';
+      [0.25, 0.5, 0.75, 1.0].forEach(level => {
+        const pts = COMPETENCIES_DATA.map((_, i) => {
+          const angle = (Math.PI * 2 * i) / count - Math.PI / 2;
+          return `${(cx + Math.cos(angle) * maxR * level).toFixed(1)},${(cy + Math.sin(angle) * maxR * level).toFixed(1)}`;
+        }).join(' ');
+        ringsSvg += `<polygon points="${pts}" fill="none" stroke="rgba(0, 245, 212, 0.16)" stroke-width="1" />`;
+      });
+
+      let axesSvg = '';
+      const dataPoints = [];
+
+      COMPETENCIES_DATA.forEach((comp, i) => {
+        const angle = (Math.PI * 2 * i) / count - Math.PI / 2;
+        const cos = Math.cos(angle);
+        const sin = Math.sin(angle);
+        const xEnd = cx + cos * maxR;
+        const yEnd = cy + sin * maxR;
+        axesSvg += `<line x1="${cx}" y1="${cy}" x2="${xEnd.toFixed(1)}" y2="${yEnd.toFixed(1)}" stroke="rgba(0, 187, 249, 0.22)" stroke-width="1" />`;
+
+        const rVal = maxR * (comp.score / 100);
+        const px = cx + cos * rVal;
+        const py = cy + sin * rVal;
+        dataPoints.push({ x: px, y: py, idx: i, comp, angle, cos, sin });
+      });
+
+      const polyPts = dataPoints.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+
+      const nodesSvg = dataPoints.map(p => {
+        const active = p.idx === activeCompetencyIdx;
+        const lx = cx + p.cos * (maxR + 28);
+        const ly = cy + p.sin * (maxR + 22);
+        const anchor = Math.abs(p.cos) < 0.2 ? 'middle' : p.cos > 0 ? 'start' : 'end';
+
+        return `
+          <g class="cursor-pointer" onclick="selectCompetencyNode(${p.idx})">
+            <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${active ? 7 : 4.5}" fill="${active ? '#ffb703' : '#00f5d4'}" stroke="#02060d" stroke-width="1.5" />
+            <text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="${anchor}" fill="${active ? '#ffb703' : '#cbd5e1'}" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="${active ? '700' : '500'}">
+              ${p.comp.shortLabel}
+            </text>
+          </g>
+        `;
+      }).join('');
+
+      svg.innerHTML = `
+        ${ringsSvg}
+        ${axesSvg}
+        <polygon points="${polyPts}" fill="rgba(0, 245, 212, 0.2)" stroke="#00f5d4" stroke-width="2" />
+        ${nodesSvg}
+      `;
+
+      const labelEl = document.getElementById('radarActiveAxisLabel');
+      if (labelEl) {
+        const activeComp = COMPETENCIES_DATA[activeCompetencyIdx];
+        labelEl.textContent = `${activeComp.shortLabel.toUpperCase()} (${activeComp.score}%)`;
+      }
+    }
+
+    function renderCompetencyModules() {
+      const grid = document.getElementById('competencyModulesGrid');
+      if (!grid) return;
+      grid.innerHTML = COMPETENCIES_DATA.map((c, idx) => {
+        const active = idx === activeCompetencyIdx;
+        return `
+          <div onclick="selectCompetencyNode(${idx})" class="p-4 rounded-2xl border transition-all cursor-pointer ${
+            active
+              ? 'bg-holo-cyan/15 border-holo-cyan shadow-[0_0_20px_rgba(0,245,212,0.16)]'
+              : 'bg-abyss-950/90 border-white/10 hover:border-holo-cyan/40'
+          }">
+            <div class="flex items-center justify-between font-mono text-[10px]">
+              <span class="${active ? 'text-holo-amber font-bold' : 'text-holo-cyan'}">0${idx + 1}</span>
+              <span class="text-emerald-400 font-bold">${c.score}%</span>
+            </div>
+            <h3 class="font-display text-xs font-bold text-white mt-1.5 leading-snug">${c.title}</h3>
+            <p class="text-[11px] text-slate-400 mt-1.5 leading-relaxed">${c.detail}</p>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // =========================================================================
+    // 10. SPOTLIGHT COMMAND PALETTE, VCARD EXPORT & CLIPBOARD UTILITIES
+    // =========================================================================
+
+    function openCommandPalette() {
+      playUiClick();
+      const modal = document.getElementById('commandPaletteModal');
+      const input = document.getElementById('commandPaletteInput');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      input.value = '';
+      renderCommandResults();
+      setTimeout(() => input.focus(), 30);
+    }
+
+    function closeCommandPalette() {
+      const modal = document.getElementById('commandPaletteModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function renderCommandResults() {
+      const q = (document.getElementById('commandPaletteInput')?.value || '').trim().toLowerCase();
+      const list = document.getElementById('commandResultsList');
+      if (!list) return;
+
+      const items = [
+        { type: 'ACTION', title: 'Play / Toggle AI Voice Briefing Deck', sub: 'Neural Speech Synthesis & Live Transcript', action: () => { closeCommandPalette(); toggleVoiceBrief(); } },
+        { type: 'ACTION', title: 'Download Contact vCard (.VCF)', sub: 'Save Dr. Nirmal Rajkumar to device contacts', action: () => { closeCommandPalette(); downloadVCard(); } },
+        { type: 'ACTION', title: 'Export Print / PDF Dossier', sub: 'Clean executive print stylesheet', action: () => { closeCommandPalette(); window.print(); } },
+        ...GLOBE_BEACONS.map(b => ({
+          type: 'SECTOR',
+          title: `Lock 3D Globe: ${b.label}`,
+          sub: `${b.coords} | ${b.regs}`,
+          action: () => { closeCommandPalette(); setGlobalRegion(b.id); }
+        })),
+        ...PROJECTS_DATA.map((p, idx) => ({
+          type: 'PROJECT',
+          title: p.title,
+          sub: `${p.client} • ${p.location} (${p.period})`,
+          action: () => { closeCommandPalette(); openProjectModal(idx); }
+        }))
+      ];
+
+      const filtered = q
+        ? items.filter(it => it.title.toLowerCase().includes(q) || it.sub.toLowerCase().includes(q) || it.type.toLowerCase().includes(q))
+        : items.slice(0, 12);
+
+      if (!filtered.length) {
+        list.innerHTML = `<div class="p-6 text-center font-mono text-xs text-slate-400">No matching commands or projects found.</div>`;
+        return;
+      }
+
+      window._cmdActions = filtered.map(f => f.action);
+      list.innerHTML = filtered.slice(0, 15).map((item, i) => `
+        <button type="button" onclick="window._cmdActions[${i}]()" class="w-full p-3 rounded-xl bg-abyss-950/90 hover:bg-holo-cyan/15 border border-white/10 hover:border-holo-cyan/40 text-left flex items-center justify-between gap-3 transition-all cursor-pointer">
+          <div class="min-w-0">
+            <div class="text-xs sm:text-sm font-semibold text-white truncate">${escapeHtml(item.title)}</div>
+            <div class="font-mono text-[11px] text-slate-400 truncate mt-0.5">${escapeHtml(item.sub)}</div>
+          </div>
+          <span class="px-2 py-0.5 rounded bg-holo-cyan/15 text-holo-cyan font-mono text-[10px] font-bold shrink-0">${escapeHtml(item.type)}</span>
+        </button>
+      `).join('');
+    }
+
+    function downloadVCard() {
+      playSonarPing();
+      const vcf = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        'N:Rajkumar;Nirmal;;Dr.;Ph.D.',
+        'FN:Dr. Nirmal Rajkumar',
+        'ORG:Abu Dhabi Ports / KEO International Consultants',
+        'TITLE:Senior Environment Expert (Marine)',
+        'TEL;TYPE=CELL,VOICE:+971563492737',
+        'TEL;TYPE=CELL,VOICE:+919003039100',
+        'EMAIL;TYPE=PREF,INTERNET:nirmalrajkumar@hotmail.com',
+        'ADR;TYPE=WORK:;;Abu Dhabi;;;UAE',
+        'NOTE:Ph.D. Marine Biogeochemistry | 25+ Years Experience | Marine EIA/PER, Statutory NOCs (EAD, MME, Ashghal, MoEF/CRZ), CEMP, HSEIA',
+        'END:VCARD'
+      ].join('\r\n');
+
+      const blob = new Blob([vcf], { type: 'text/vcard;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Dr_Nirmal_Rajkumar_CV.vcf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('VCARD DOWNLOADED // Dr_Nirmal_Rajkumar_CV.vcf');
+    }
+
+    function copyDossierContact() {
+      playUiClick();
+      const summary = [
+        'Dr. Nirmal Rajkumar — Senior Environment Expert (Marine)',
+        'Ph.D. Marine Biogeochemistry | 25+ Years Experience (UAE, Qatar, Bahrain, KSA, India)',
+        'Location: Abu Dhabi, UAE',
+        'Mobile (UAE): +971 56 349 2737 | Mobile (India): +91 900303 9100',
+        'Email: nirmalrajkumar@hotmail.com'
+      ].join('\n');
+
+      const textarea = document.createElement('textarea');
+      textarea.value = summary;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast('TELEMETRY COPIED TO CLIPBOARD');
+      } catch (e) {
+        showToast('UNABLE TO COPY AUTOMATICALLY');
+      }
+      document.body.removeChild(textarea);
+    }
+    function handleAvatarError(img) {
+      if (!img) return;
+      img.classList.add('hidden');
+      const fallback = document.getElementById('profileAvatarFallback');
+      if (fallback) {
+        fallback.classList.remove('hidden');
+      }
+    }
+
+    function handleAvatarUpload(event) {
+      const file = event.target?.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const img = document.getElementById('profileAvatarImg');
+        const fallback = document.getElementById('profileAvatarFallback');
+        if (img && e.target?.result) {
+          img.src = e.target.result;
+          img.classList.remove('hidden');
+          img.style.display = 'block';
+        }
+        if (fallback) {
+          fallback.classList.add('hidden');
+        }
+        playSonarPing();
+        showToast('BIOMETRIC PORTRAIT UPDATED // ' + file.name);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function showToast(msg) {
+      const el = document.getElementById('copyToast');
+      if (!el) return;
+      el.textContent = msg;
+      el.classList.remove('hidden');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => el.classList.add('hidden'), 3200);
+    }
+    }
+
+    function handleAvatarUpload(event) {
+      const file = event.target?.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const img = document.getElementById('profileAvatarImg');
+        const fallback = document.getElementById('profileAvatarFallback');
+        if (img && e.target?.result) {
+          img.src = e.target.result;
+          img.style.display = 'block';
+        }
+        if (fallback) {
+          fallback.classList.add('hidden');
+          fallback.classList.remove('flex');
+        }
+        playSonarPing();
+        showToast('BIOMETRIC PORTRAIT UPDATED // ' + file.name);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Keyboard shortcuts (Ctrl+K / Cmd+K and Escape)
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        openCommandPalette();
+      } else if (e.key === 'Escape') {
+        closeCommandPalette();
+        closeProjectModal();
+      }
+    });
+
+    // Close modals on backdrop click
+    document.getElementById('projectModal')?.addEventListener('click', (e) => {
+      if (e.target.id === 'projectModal') closeProjectModal();
+    });
+    document.getElementById('commandPaletteModal')?.addEventListener('click', (e) => {
+      if (e.target.id === 'commandPaletteModal') closeCommandPalette();
+    });
+
+    // =========================================================================
+    // 11. SYSTEM BOOTSTRAP
+    // =========================================================================
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initSonarCanvas();
+      initBathymetricGlobe();
+      initSpectrumCanvas();
+      renderGlobeBeaconBar();
+      syncBriefUI(-1);
+      renderTrajectory();
+      renderProjectMatrix();
+      renderCompetencyRadar();
+      renderCompetencyModules();
+    });
+  </script>
+</body>
+</html>
